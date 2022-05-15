@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>BOTW Armor Upgrade Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="triforce.png">
+    <!-- <script defer src="https://unpkg.com/vue@3.2.33/dist/vue.global.prod.js"></script> -->
+    <script defer src="https://unpkg.com/vue@3.2.33/dist/vue.global.js"></script>
+    <script defer src="main.js"></script>
+  </head>
+  <body>
+    <h1 id="top">
+      BOTW Armor Upgrade Tracker
+    </h1>
+    <div id="app" v-cloak>
+      <aside>
+        <label for="profile">Profile:</label>
+        <select id="profile" v-model="currentProfile">
+          <option
+            v-for="(profile, profileName) in profiles"
+            :value="profileName"
+          >{{ profileName }}</option>
+        </select>
+        <h2 class="flex-between">
+          Totals
+          <select v-model="totalFilter">
+            <option value="all">All</option>
+            <option value="required">Required</option>
+            <option value="have">Have</option>
+            <option value="need">Need</option>
+          </select>
+        </h2>
+        <div class="flex-between">
+          <strong>Material</strong>
+          <strong>Required</strong>
+          <strong>Have</strong>
+          <strong>Need</strong>
+        </div>
+        <table>
+          <tbody>
+            <transition-group name="list">
+              <template
+                v-for="(userValue, userItem) in ingredientsNeeded"
+                :key="'userInventory' + userItem"
+              >
+                <tr>
+                  <td v-text="userItem"></td>
+                  <td
+                    v-text="ingredientsNeeded[userItem]"
+                    class="right"
+                  ></td>
+                  <td>
+                    <input
+                      v-model.number="userInventory[userItem]"
+                      class="inventory-input"
+                      type="number"
+                      dir="rtl"
+                    >
+                  </td>
+                  <td class="right">
+                    <template v-if="ingredientsNeeded[userItem] - userInventory[userItem] > 0">
+                      {{ ingredientsNeeded[userItem] - userInventory[userItem] }}
+                    </template>
+                    <template v-else>
+                      ✔️
+                    </template>
+                  </td>
+                </tr>
+              </template>
+            </transition-group>
+          </tbody>
+        </table>
+      </aside>
+      <main>
+        <section>
+          <h2>Filters</h2>
+          <label>
+            Search:
+            <input v-model="search" type="text">
+          </label>
+          <select v-model="showObtained">
+            <option value="all">All</option>
+            <option value="obtained">Only Obtained</option>
+            <option value="unobtained">Only Unobtained</option>
+          </select>
+          <label>
+            <input v-model="showDlc" type="checkbox">
+            Show DLC
+          </label>
+          <label>
+            <input v-model="showAmiibo" type="checkbox">
+            Show Amiibo
+          </label>
+          <label>
+            <input v-model="onlyShowUpgradable" type="checkbox">
+            Show only upgradable
+          </label>
+        </section>
+        <section>
+          <h2 @click="showCategories = !showCategories">
+            Categories
+            <span class="small cursor">
+              <template v-if="showCategories">▼</template>
+              <template v-else>◀︎</template>
+            </span>
+          </h2>
+          <nav v-if="showCategories">
+            <span
+              v-for="(categoryArmors, categoryName, categoryNavIndex) in categorizedArmor"
+              :key="'categoryName' + categoryName"
+            >
+              <a
+                :href="'#' + categoryName"
+                v-text="categoryName"
+              ></a><template
+                v-if="categoryNavIndex < Object.keys(categorizedArmor).length - 1"
+              >, </template>
+            </span>
+          </nav>
+          <transition-group name="list">
+            <div
+              v-for="(categoryArmors, categoryName) in categorizedArmor"
+              :key="'category' + categoryName"
+              :id="categoryName"
+            >
+              <h3>
+                {{ categoryName }}
+                <a
+                  v-text="'▲'"
+                  class="small cursor"
+                  href="#top"
+                  title="Back to top"
+                ></a>
+              </h3>
+              <transition-group name="list">
+                <div
+                  v-for="(armorIndex, categoryArmorsIndex) in categoryArmors"
+                  :key="'category' + categoryName + 'armorIndex' + categoryArmorsIndex"
+                  class="card-border"
+                >
+                  <div class="card">
+                    <div class="image-container">
+                      <div :class="'armors ' + simplifyName(armors[armorIndex].name)"></div>
+                      <span
+                        v-if="armors[armorIndex].obtained && !cannotBeUpgraded.includes(armors[armorIndex].name)"
+                        class="stars"
+                      >
+                        <span
+                          v-text="armors[armorIndex].currentLevel === 0 ? '☆' : '★'"
+                          @click="armors[armorIndex].currentLevel = armors[armorIndex].currentLevel === 1 ? 0 : 1"
+                        ></span>
+                        <span
+                          v-text="armors[armorIndex].currentLevel < 2 ? '☆' : '★'"
+                          @click="armors[armorIndex].currentLevel = 2"
+                        ></span>
+                        <span
+                          v-text="armors[armorIndex].currentLevel < 3 ? '☆' : '★'"
+                          @click="armors[armorIndex].currentLevel = 3"
+                        ></span>
+                        <span
+                          v-text="armors[armorIndex].currentLevel < 4 ? '☆' : '★'"
+                          @click="armors[armorIndex].currentLevel = 4"
+                        ></span>
+                      </span>
+                    </div>
+                    <h4>
+                      {{ armors[armorIndex].name }}
+                    </h4>
+                    <span>
+                      <label>
+                        Obtained:
+                        <input
+                          type="checkbox"
+                          v-model="armors[armorIndex].obtained"
+                        >
+                      </label>
+                    </span>
+
+                    <span v-if="armors[armorIndex].fromAmiibo" class="pill">
+                      From Amiibo
+                    </span>
+                    <span v-if="armors[armorIndex].fromDlc" class="pill">
+                      From DLC
+                    </span>
+                    <div
+                      v-if="
+                        armors[armorIndex].obtained &&
+                        !cannotBeUpgraded.includes(armors[armorIndex].name) &&
+                        armors[armorIndex].currentLevel < 4
+                      "
+                    >
+                      Ingredients
+                      <transition-group name="list">
+                        <template
+                          v-for="(levelIngredients, levelNumber) in armors[armorIndex].ingredients"
+                          :key="'category' + categoryName + 'armorIndex' + categoryArmorsIndex + 'level' + levelNumber"
+                        >
+                          <div
+                            v-if="levelNumber > armors[armorIndex].currentLevel"
+                            class="row"
+                          >
+                            <div class="col">
+                              Level {{ levelNumber }}:<br>
+                              <small
+                                v-text="'(buy)'"
+                                class="cursor"
+                                title="Will subtract this amount from your inventory and increase your star"
+                                @click="purchase(armors[armorIndex], levelNumber)"
+                              ></small>
+                            </div>
+                            <div class="col">
+                              <div v-for="ingredient in levelIngredients">
+                                <strong v-text="ingredient.quantity"></strong>
+                                {{ ingredient.name }}
+                              </div>
+                            </div>
+                            <div class="col">
+                              <div
+                                v-for="ingredient in levelIngredients"
+                                class="row"
+                              >
+                                <input
+                                  v-model.number="userInventory[ingredient.name]"
+                                  type="number"
+                                  class="inventory-input"
+                                  dir="rtl"
+                                >
+                                <div class="needed">
+                                  <template v-if="ingredient.quantity <= userInventory[ingredient.name]">
+                                    ✔️
+                                  </template>
+                                  <template v-else>
+                                    {{ ingredient.quantity - userInventory[ingredient.name] }}
+                                  </template>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </template>
+                      </transition-group>
+                    </div>
+                  </div>
+                </div>
+              </transition-group>
+            </div>
+          </transition-group>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
