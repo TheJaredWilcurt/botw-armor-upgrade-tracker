@@ -3984,6 +3984,7 @@ function generateProfile () {
 const app = Vue.createApp({
   data: function () {
     return {
+      showNote: false,
       totalFilter: 'required',
       search: '',
       showCategories: false,
@@ -4173,6 +4174,9 @@ const app = Vue.createApp({
         });
       }
       return ingredientsNeeded;
+    },
+    totalObtained: function () {
+      return this.obtainedArmors.length;
     },
     categorizedArmor: function () {
       const categories = {};

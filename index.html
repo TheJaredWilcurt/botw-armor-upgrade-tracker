@@ -5,7 +5,7 @@
     <title>BOTW Armor Upgrade Tracker</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="shortcut icon" href="triforce.png">
-    <script defer src="https://unpkg.com/vue@3.2.33/dist/vue.global.prod.js"></script>
+    <script defer src="https://unpkg.com/vue@3.2.36/dist/vue.global.prod.js"></script>
     <script defer src="main.js"></script>
   </head>
   <body>
@@ -73,6 +73,31 @@
       </aside>
       <main>
         <section>
+          <p>
+            Obtained {{ totalObtained }} / 107 -
+            <strong>Note:</strong> <span @click="showNote = !showNote" class="pill pointer">Show/Hide note</span>
+          </p>
+          <p v-if="showNote">
+            Unless you <a href="https://gamebanana.com/mods/49882">mod this game in an emulator</a>, it only supports 100 armor
+            slots. This means you cannot hold all 107 of the base armor + all DLC armor + all the amiibo armors.
+            You must choose 7 armors to not carry with you. You can sell (almost) any armor, and can purchase back any previously
+            owned armor in Tarrey Town from <a href="https://www.zeldadungeon.net/wiki/Grant%C3%A9">Granté</a> (upstairs). If you
+            <em>somehow</em> don't have all <strong>25</strong> Zelda amiibos that effect the game, and for some reason don't
+            feel like paying absurd prices on eBay for them, you can either use your phone to spoof NFC codes (this is a HUGE
+            pain, as you need to run through all amiibos every day to see if they'll drop a new armor or one you already got, or
+            some other items like arrows, opal, or a <a href="https://zelda.fandom.com/wiki/Silverscale_Spear">stupid weapon</a>).
+            Or you can get some <a href="https://www.zeldacards.com">knock-off nfc cards</a> from China, which is what I did. They
+            work great, and the artwork is hilariously "legally distinct" from Nintendo's intellectual property.
+            (I make no money from this referal, I just found the link from YouTube, bought them, and was surprised they worked).
+          </p>
+          <p v-if="showNote">
+            The 7 armors I recommend selling/skipping (but you can make your own decisions).
+            Warm Doublet,
+            Old Shirt,
+            Well-Worn Trousers,
+            Salvager Headgear/Vest/Trousers (Zora armor does the same thing + swims up waterfalls and looks better),
+            and amber earrings (this are the least useful of the earrings). gl/hf
+          </p>
           <h2>Filters</h2>
           <label>
             Search:
