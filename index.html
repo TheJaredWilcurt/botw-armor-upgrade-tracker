@@ -124,7 +124,7 @@
         <section>
           <h2 @click="showCategories = !showCategories">
             Categories
-            <span class="small cursor">
+            <span class="small pointer">
               <template v-if="showCategories">▼</template>
               <template v-else>◀︎</template>
             </span>
@@ -152,7 +152,7 @@
                 {{ categoryName }}
                 <a
                   v-text="'▲'"
-                  class="small cursor"
+                  class="small pointer"
                   href="#top"
                   title="Back to top"
                 ></a>
@@ -227,14 +227,14 @@
                             <div class="col">
                               Level {{ levelNumber }}:<br>
                               <small
-                                v-text="'(buy)'"
-                                class="cursor"
+                                v-text="'buy'"
+                                class="pill pointer center"
                                 title="Will subtract this amount from your inventory and increase your star"
                                 @click="purchase(armors[armorIndex], levelNumber)"
                               ></small>
                             </div>
                             <div class="col">
-                              <div v-for="ingredient in levelIngredients">
+                              <div v-for="(ingredient, ingredientIndex) in levelIngredients">
                                 <strong v-text="ingredient.quantity"></strong>
                                 {{ ingredient.name }}
                               </div>
@@ -251,11 +251,11 @@
                                   dir="rtl"
                                 >
                                 <div class="needed">
-                                  <template v-if="ingredient.quantity <= userInventory[ingredient.name]">
+                                  <template v-if="totalAmountOfIngredientForThisLevel(armors[armorIndex].ingredients, levelNumber, ingredient.name, armors[armorIndex].currentLevel) <= userInventory[ingredient.name]">
                                     ✔️
                                   </template>
                                   <template v-else>
-                                    {{ ingredient.quantity - userInventory[ingredient.name] }}
+                                    {{ totalAmountOfIngredientForThisLevel(armors[armorIndex].ingredients, levelNumber, ingredient.name, armors[armorIndex].currentLevel) - userInventory[ingredient.name] }}
                                   </template>
                                 </div>
                               </div>

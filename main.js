@@ -4096,6 +4096,71 @@ const app = Vue.createApp({
       });
       armor.currentLevel = parseInt(levelNumber);
     },
+    totalAmountOfIngredientForThisLevel: function (armorIngredients, level, ingredientName, armorLevel) {
+      let totalNeededToAcquireCurrentLevel = 0;
+      const filteredArmorIngredients = {};
+      for (let armorIngredientLevel in armorIngredients) {
+        armorIngredients[armorIngredientLevel].forEach(function (ingredient) {
+          if (ingredient.name === ingredientName) {
+            filteredArmorIngredients[armorIngredientLevel] = ingredient;
+          }
+        });
+      }
+
+      if (level == 1) {
+        if (armorLevel == 0) {
+          totalNeededToAcquireCurrentLevel += filteredArmorIngredients['1']?.quantity;
+        }
+      }
+
+      if (level == 2) {
+        if (armorLevel == 0) {
+          totalNeededToAcquireCurrentLevel += filteredArmorIngredients['1']?.quantity;
+          totalNeededToAcquireCurrentLevel += filteredArmorIngredients['2']?.quantity;
+        }
+        if (armorLevel == 1) {
+          totalNeededToAcquireCurrentLevel += filteredArmorIngredients['2']?.quantity;
+        }
+      }
+
+      if (level == 3) {
+        if (armorLevel == 0) {
+          totalNeededToAcquireCurrentLevel += filteredArmorIngredients['1']?.quantity;
+          totalNeededToAcquireCurrentLevel += filteredArmorIngredients['2']?.quantity;
+          totalNeededToAcquireCurrentLevel += filteredArmorIngredients['3']?.quantity;
+        }
+        if (armorLevel == 1) {
+          totalNeededToAcquireCurrentLevel += filteredArmorIngredients['2']?.quantity;
+          totalNeededToAcquireCurrentLevel += filteredArmorIngredients['3']?.quantity;
+        }
+        if (armorLevel == 2) {
+          totalNeededToAcquireCurrentLevel += filteredArmorIngredients['3']?.quantity;
+        }
+      }
+
+      if (level == 4) {
+        if (armorLevel == 0) {
+          totalNeededToAcquireCurrentLevel += filteredArmorIngredients['1']?.quantity;
+          totalNeededToAcquireCurrentLevel += filteredArmorIngredients['2']?.quantity;
+          totalNeededToAcquireCurrentLevel += filteredArmorIngredients['3']?.quantity;
+          totalNeededToAcquireCurrentLevel += filteredArmorIngredients['4']?.quantity;
+        }
+        if (armorLevel == 1) {
+          totalNeededToAcquireCurrentLevel += filteredArmorIngredients['2']?.quantity;
+          totalNeededToAcquireCurrentLevel += filteredArmorIngredients['3']?.quantity;
+          totalNeededToAcquireCurrentLevel += filteredArmorIngredients['4']?.quantity;
+        }
+        if (armorLevel == 2) {
+          totalNeededToAcquireCurrentLevel += filteredArmorIngredients['3']?.quantity;
+          totalNeededToAcquireCurrentLevel += filteredArmorIngredients['4']?.quantity;
+        }
+        if (armorLevel == 3) {
+          totalNeededToAcquireCurrentLevel += filteredArmorIngredients['4']?.quantity;
+        }
+      }
+
+      return totalNeededToAcquireCurrentLevel;
+    },
     save: function () {
       const id = this.localStorageId;
       const data = this.dataToSave;

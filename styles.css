@@ -157,13 +157,16 @@ label {
   text-align: center;
 }
 
-/* Utility */
+/* UTILITY */
 .pointer {
   cursor: pointer;
 }
 .inventory-input {
   width: 50px;
   text-align: right;
+}
+.center {
+  text-align: center;
 }
 .right {
   text-align: right
@@ -178,11 +181,8 @@ label {
   text-decoration: none;
   vertical-align: super;
 }
-.cursor {
-  cursor: pointer;
-}
 
-
+/* VUE TRANSITIONS */
 .list-enter-active,
 .list-leave-active {
   transition: 0.5s ease all;
@@ -193,6 +193,7 @@ label {
   transform: translateX(30px);
 }
 
+/* ARMOR SPRITESHEET */
 .armors {
   width: 70px;
   height: 70px;
