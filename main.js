@@ -793,7 +793,7 @@ function generateProfile () {
       {
         "name": "Radiant Mask",
         "type": "hat",
-        "set": "Radian Set",
+        "set": "Radiant Set",
         "fromAmiibo": false,
         "fromDlc": false,
         "obtained": false,
@@ -844,7 +844,7 @@ function generateProfile () {
       {
         "name": "Radiant Shirt",
         "type": "shirt",
-        "set": "Radian Set",
+        "set": "Radiant Set",
         "fromAmiibo": false,
         "fromDlc": false,
         "obtained": false,
@@ -895,7 +895,7 @@ function generateProfile () {
       {
         "name": "Radiant Tights",
         "type": "pants",
-        "set": "Radian Set",
+        "set": "Radiant Set",
         "fromAmiibo": false,
         "fromDlc": false,
         "obtained": false,
@@ -4156,9 +4156,7 @@ const app = Vue.createApp({
       });
     },
     ingredientsNeeded: function () {
-      const ingredientsNeeded = {
-        ...generateProfile().inventory
-      };
+      const ingredientsNeeded = generateProfile().inventory;
       this.obtainedArmors.forEach(function (armor) {
         const ingredientsLevels = Object.keys(armor.ingredients);
         ingredientsLevels.forEach(function (ingredientLevel) {
@@ -4182,14 +4180,19 @@ const app = Vue.createApp({
         });
       } else if (this.totalFilter === 'have') {
         ingredients.forEach((ingredient) => {
-          if (!this.userInventory[ingredient]) {
+          let required = ingredientsNeeded[ingredient] || 0;
+          let have = this.userInventory[ingredient] || 0;
+          let need = required - have;
+          if (required < 1 || need > 0) {
             delete ingredientsNeeded[ingredient];
           }
         });
       } else if (this.totalFilter === 'need') {
         ingredients.forEach((ingredient) => {
-          let need = this.ingredientsNeeded[ingredient] - this.userInventory[ingredient];
-          if (need < 1) {
+          let required = ingredientsNeeded[ingredient] || 0;
+          let have = this.userInventory[ingredient] || 0;
+          let need = required - have;
+          if (need < 1 || required < 1) {
             delete ingredientsNeeded[ingredient];
           }
         });
