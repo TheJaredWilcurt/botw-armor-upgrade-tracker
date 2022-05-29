@@ -20,7 +20,7 @@
 
 /* BASE */
 [v-cloak] {
-  display: none;
+  display: none !important;
 }
 body {
   background: #333;

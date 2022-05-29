@@ -4177,6 +4177,10 @@ const app = Vue.createApp({
         this.showAmiibo = data.showAmiibo;
         this.showObtained = data.showObtained;
       }
+    },
+    removeLoadingText: function () {
+      const text = window.document.getElementById('loading');
+      text.style.display = 'none';
     }
   },
   computed: {
@@ -4272,5 +4276,6 @@ const app = Vue.createApp({
   },
   created: function () {
 		this.load();
+    this.removeLoadingText();
   }
 }).mount('#app');

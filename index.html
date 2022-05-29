@@ -12,6 +12,7 @@
     <h1 id="top" title="The Legend of Zelda: Breath of the Wild - Armor Upgrade Tracker">
       BOTW Armor Upgrade Tracker
     </h1>
+    <h2 id="loading" class="center">Loading···</h2>
     <div id="app" v-cloak>
       <aside>
         <label for="profile">Profile:</label>
@@ -75,7 +76,9 @@
         <section>
           <p>
             Obtained {{ totalObtained }} / 107 -
-            <strong>Note:</strong> <span @click="showNote = !showNote" class="pill pointer">Show/Hide note</span>
+            <strong>Note:</strong> <span @click="showNote = !showNote" class="pill pointer">
+            <template v-if="!showNote">Show</template><template v-else>Hide</template> note
+          </span>
           </p>
           <p v-if="showNote">
             Unless you <a href="https://gamebanana.com/mods/49882">mod this game in an emulator</a>, it only supports 100 armor
