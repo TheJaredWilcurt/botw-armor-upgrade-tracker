@@ -158,6 +158,9 @@ label {
 }
 
 /* UTILITY */
+.blur {
+  filter: blur(15px);
+}
 .pointer {
   cursor: pointer;
 }
@@ -200,6 +203,7 @@ label {
   background-image: url('armors.png');
   background-size: auto 300px;
   background-position-y: -1px;
+  transition: 3s ease all;
 }
 
 .amberearrings        { background-position-x: calc(0 * -72px); }

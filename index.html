@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="shortcut icon" href="triforce.png">
     <script defer src="https://unpkg.com/vue@3.2.36/dist/vue.global.prod.js"></script>
+    <script defer src="https://unpkg.com/scrolltosmooth@2.2.1/dist/scrolltosmooth.min.js"></script>
     <script defer src="main.js"></script>
   </head>
   <body>
@@ -138,8 +139,9 @@
               :key="'categoryName' + categoryName"
             >
               <a
-                :href="'#' + categoryName"
+                :href="'#' + simplifyName(categoryName)"
                 v-text="categoryName"
+                @click="smoothScroll.scrollTo('#' + simplifyName(categoryName))"
               ></a><template
                 v-if="categoryNavIndex < Object.keys(categorizedArmor).length - 1"
               >, </template>
@@ -149,7 +151,7 @@
             <div
               v-for="(categoryArmors, categoryName) in categorizedArmor"
               :key="'category-' + simplifyName(categoryName)"
-              :id="categoryName"
+              :id="simplifyName(categoryName)"
             >
               <h3>
                 {{ categoryName }}
@@ -158,6 +160,7 @@
                   class="small pointer"
                   href="#top"
                   title="Back to top"
+                  @click="smoothScroll.scrollTo('#top')"
                 ></a>
               </h3>
               <transition-group name="list">
@@ -168,28 +171,32 @@
                 >
                   <div class="card">
                     <div class="image-container">
-                      <div :class="'armors ' + simplifyName(armors[armorIndex].name)"></div>
-                      <span
-                        v-if="armors[armorIndex].obtained && !cannotBeUpgraded.includes(armors[armorIndex].name)"
-                        class="stars"
-                      >
+                      <div
+                        :class="['armors', simplifyName(armors[armorIndex].name), { 'blur': !armors[armorIndex].obtained }]"
+                      ></div>
+                      <transition name="list">
                         <span
-                          v-text="armors[armorIndex].currentLevel === 0 ? '☆' : '★'"
-                          @click="armors[armorIndex].currentLevel = armors[armorIndex].currentLevel === 1 ? 0 : 1"
-                        ></span>
-                        <span
-                          v-text="armors[armorIndex].currentLevel < 2 ? '☆' : '★'"
-                          @click="armors[armorIndex].currentLevel = 2"
-                        ></span>
-                        <span
-                          v-text="armors[armorIndex].currentLevel < 3 ? '☆' : '★'"
-                          @click="armors[armorIndex].currentLevel = 3"
-                        ></span>
-                        <span
-                          v-text="armors[armorIndex].currentLevel < 4 ? '☆' : '★'"
-                          @click="armors[armorIndex].currentLevel = 4"
-                        ></span>
-                      </span>
+                          v-if="armors[armorIndex].obtained && !cannotBeUpgraded.includes(armors[armorIndex].name)"
+                          class="stars"
+                        >
+                          <span
+                            v-text="armors[armorIndex].currentLevel === 0 ? '☆' : '★'"
+                            @click="armors[armorIndex].currentLevel = armors[armorIndex].currentLevel === 1 ? 0 : 1"
+                          ></span>
+                          <span
+                            v-text="armors[armorIndex].currentLevel < 2 ? '☆' : '★'"
+                            @click="armors[armorIndex].currentLevel = 2"
+                          ></span>
+                          <span
+                            v-text="armors[armorIndex].currentLevel < 3 ? '☆' : '★'"
+                            @click="armors[armorIndex].currentLevel = 3"
+                          ></span>
+                          <span
+                            v-text="armors[armorIndex].currentLevel < 4 ? '☆' : '★'"
+                            @click="armors[armorIndex].currentLevel = 4"
+                          ></span>
+                        </span>
+                      </transition>
                     </div>
                     <h4>
                       {{ armors[armorIndex].name }}
@@ -210,63 +217,65 @@
                     <span v-if="armors[armorIndex].fromDlc" class="pill">
                       From DLC
                     </span>
-                    <div
-                      v-if="
-                        armors[armorIndex].obtained &&
-                        !cannotBeUpgraded.includes(armors[armorIndex].name) &&
-                        armors[armorIndex].currentLevel < 4
-                      "
-                    >
-                      Ingredients
-                      <transition-group name="list">
-                        <template
-                          v-for="(levelIngredients, levelNumber) in armors[armorIndex].ingredients"
-                          :key="'category' + categoryName + 'armorIndex' + categoryArmorsIndex + 'level' + levelNumber"
-                        >
-                          <div
-                            v-if="levelNumber > armors[armorIndex].currentLevel"
-                            class="row"
+                    <transition name="list">
+                      <div
+                        v-if="
+                          armors[armorIndex].obtained &&
+                          !cannotBeUpgraded.includes(armors[armorIndex].name) &&
+                          armors[armorIndex].currentLevel < 4
+                        "
+                      >
+                        Ingredients
+                        <transition-group name="list">
+                          <template
+                            v-for="(levelIngredients, levelNumber) in armors[armorIndex].ingredients"
+                            :key="'category' + categoryName + 'armorIndex' + categoryArmorsIndex + 'level' + levelNumber"
                           >
-                            <div class="col">
-                              Level {{ levelNumber }}:<br>
-                              <small
-                                v-text="'buy'"
-                                class="pill pointer center"
-                                title="Will subtract this amount from your inventory and increase your star"
-                                @click="purchase(armors[armorIndex], levelNumber)"
-                              ></small>
-                            </div>
-                            <div class="col">
-                              <div v-for="(ingredient, ingredientIndex) in levelIngredients">
-                                <strong v-text="ingredient.quantity"></strong>
-                                {{ ingredient.name }}
+                            <div
+                              v-if="levelNumber > armors[armorIndex].currentLevel"
+                              class="row"
+                            >
+                              <div class="col">
+                                Level {{ levelNumber }}:<br>
+                                <small
+                                  v-text="'buy'"
+                                  class="pill pointer center"
+                                  title="Will subtract this amount from your inventory and increase your star"
+                                  @click="purchase(armors[armorIndex], levelNumber)"
+                                ></small>
                               </div>
-                            </div>
-                            <div class="col">
-                              <div
-                                v-for="ingredient in levelIngredients"
-                                class="row"
-                              >
-                                <input
-                                  v-model.number="userInventory[ingredient.name]"
-                                  type="number"
-                                  class="inventory-input"
-                                  dir="rtl"
+                              <div class="col">
+                                <div v-for="(ingredient, ingredientIndex) in levelIngredients">
+                                  <strong v-text="ingredient.quantity"></strong>
+                                  {{ ingredient.name }}
+                                </div>
+                              </div>
+                              <div class="col">
+                                <div
+                                  v-for="ingredient in levelIngredients"
+                                  class="row"
                                 >
-                                <div class="needed">
-                                  <template v-if="totalAmountOfIngredientForThisLevel(armors[armorIndex].ingredients, levelNumber, ingredient.name, armors[armorIndex].currentLevel) <= userInventory[ingredient.name]">
-                                    ✔️
-                                  </template>
-                                  <template v-else>
-                                    {{ totalAmountOfIngredientForThisLevel(armors[armorIndex].ingredients, levelNumber, ingredient.name, armors[armorIndex].currentLevel) - userInventory[ingredient.name] }}
-                                  </template>
+                                  <input
+                                    v-model.number="userInventory[ingredient.name]"
+                                    type="number"
+                                    class="inventory-input"
+                                    dir="rtl"
+                                  >
+                                  <div class="needed">
+                                    <template v-if="totalAmountOfIngredientForThisLevel(armors[armorIndex].ingredients, levelNumber, ingredient.name, armors[armorIndex].currentLevel) <= userInventory[ingredient.name]">
+                                      ✔️
+                                    </template>
+                                    <template v-else>
+                                      {{ totalAmountOfIngredientForThisLevel(armors[armorIndex].ingredients, levelNumber, ingredient.name, armors[armorIndex].currentLevel) - userInventory[ingredient.name] }}
+                                    </template>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                        </template>
-                      </transition-group>
-                    </div>
+                          </template>
+                        </transition-group>
+                      </div>
+                    </transition>
                   </div>
                 </div>
               </transition-group>

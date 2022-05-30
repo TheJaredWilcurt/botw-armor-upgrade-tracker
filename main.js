@@ -3981,6 +3981,12 @@ function generateProfile () {
   };
 }
 
+let smoothScroll = new window.scrollToSmooth('a', {
+  targetAttribute: 'href',
+  duration: 1000,
+  easing: 'easeInOutCubic'
+});
+
 const app = Vue.createApp({
   data: function () {
     return {
@@ -4040,7 +4046,8 @@ const app = Vue.createApp({
         'Salvager Headwear',
         'Salvager Vest',
         'Salvager Trousers'
-      ]
+      ],
+      smoothScroll
     };
   },
   methods: {
@@ -4232,5 +4239,6 @@ const app = Vue.createApp({
   created: function () {
 		this.load();
     this.removeLoadingText();
+    this.smoothScroll.init();
   }
 }).mount('#app');
