@@ -4122,6 +4122,13 @@ const app = Vue.createApp({
       }
       return totalNeededToAcquireCurrentLevel;
     },
+    canPurchaseThisLevel: function (armorIndex, levelNumber) {
+      const armorLevel = this.armors[armorIndex].currentLevel;
+      const armorIngredientsLevel = this.armors[armorIndex].ingredients[levelNumber];
+      return armorIngredientsLevel.every((ingredient) => {
+        return this.totalAmountOfIngredientForThisLevel(armorIndex, levelNumber, ingredient.name)  <= this.userInventory[ingredient.name];
+      });
+    },
     save: function () {
       const id = this.localStorageId;
       const data = this.dataToSave;
@@ -4142,13 +4149,6 @@ const app = Vue.createApp({
     removeLoadingText: function () {
       const text = window.document.getElementById('loading');
       text.style.display = 'none';
-    },
-    canPurchaseThisLevel: function (armorIndex, levelNumber) {
-      const armorLevel = this.armors[armorIndex].currentLevel;
-      const armorIngredientsLevel = this.armors[armorIndex].ingredients[levelNumber];
-      return armorIngredientsLevel.every((ingredient) => {
-        return this.totalAmountOfIngredientForThisLevel(armorIndex, levelNumber, ingredient.name)  <= this.userInventory[ingredient.name];
-      });
     }
   },
   computed: {
