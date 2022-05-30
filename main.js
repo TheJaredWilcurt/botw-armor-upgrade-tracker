@@ -4126,7 +4126,7 @@ const app = Vue.createApp({
       const armorLevel = this.armors[armorIndex].currentLevel;
       const armorIngredientsLevel = this.armors[armorIndex].ingredients[levelNumber];
       return armorIngredientsLevel.every((ingredient) => {
-        return this.totalAmountOfIngredientForThisLevel(armorIndex, levelNumber, ingredient.name)  <= this.userInventory[ingredient.name];
+        return this.totalAmountOfIngredientForThisLevel(armorIndex, levelNumber, ingredient.name) <= this.userInventory[ingredient.name];
       });
     },
     save: function () {
