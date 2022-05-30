@@ -148,7 +148,7 @@
           <transition-group name="list">
             <div
               v-for="(categoryArmors, categoryName) in categorizedArmor"
-              :key="'category' + categoryName"
+              :key="'category-' + simplifyName(categoryName)"
               :id="categoryName"
             >
               <h3>
@@ -163,7 +163,7 @@
               <transition-group name="list">
                 <div
                   v-for="(armorIndex, categoryArmorsIndex) in categoryArmors"
-                  :key="'category' + categoryName + 'armorIndex' + categoryArmorsIndex"
+                  :key="'category-' + simplifyName(categoryName) + '-armor-' + simplifyName(armors[armorIndex].name)"
                   class="card-border"
                 >
                   <div class="card">
