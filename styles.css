@@ -137,7 +137,8 @@ label {
   font-size: 20px;
   cursor: pointer;
 }
-.pill {
+.pill,
+.buy-button {
   display: inline-block;
   background: var(--golden);
   border-radius: 30px;
@@ -155,6 +156,15 @@ label {
 .needed {
   min-width: 25px;
   text-align: center;
+}
+.buy-button {
+  border: 0px;
+  text-align: center;
+  cursor: pointer;
+}
+.buy-button[disabled] {
+  cursor: default;
+  opacity: 0.25;
 }
 
 /* UTILITY */

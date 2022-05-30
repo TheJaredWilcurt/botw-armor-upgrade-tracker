@@ -4103,7 +4103,9 @@ const app = Vue.createApp({
       });
       armor.currentLevel = parseInt(levelNumber);
     },
-    totalAmountOfIngredientForThisLevel: function (armorIngredients, level, ingredientName, armorLevel) {
+    totalAmountOfIngredientForThisLevel: function (armorIndex, level, ingredientName) {
+      const armorLevel = this.armors[armorIndex].currentLevel;
+      const armorIngredients = this.armors[armorIndex].ingredients;
       let totalNeededToAcquireCurrentLevel = 0;
       const filteredArmorIngredients = {};
       for (let armorIngredientLevel in armorIngredients) {
@@ -4140,6 +4142,13 @@ const app = Vue.createApp({
     removeLoadingText: function () {
       const text = window.document.getElementById('loading');
       text.style.display = 'none';
+    },
+    canPurchaseThisLevel: function (armorIndex, levelNumber) {
+      const armorLevel = this.armors[armorIndex].currentLevel;
+      const armorIngredientsLevel = this.armors[armorIndex].ingredients[levelNumber];
+      return armorIngredientsLevel.every((ingredient) => {
+        return this.totalAmountOfIngredientForThisLevel(armorIndex, levelNumber, ingredient.name)  <= this.userInventory[ingredient.name];
+      });
     }
   },
   computed: {

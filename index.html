@@ -5,8 +5,8 @@
     <title>BOTW Armor Upgrade Tracker</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="shortcut icon" href="triforce.png">
-    <script defer src="https://unpkg.com/vue@3.2.36/dist/vue.global.prod.js"></script>
     <script defer src="https://unpkg.com/scrolltosmooth@2.2.1/dist/scrolltosmooth.min.js"></script>
+    <script defer src="https://unpkg.com/vue@3.2.36/dist/vue.global.prod.js"></script>
     <script defer src="main.js"></script>
   </head>
   <body>
@@ -237,12 +237,13 @@
                             >
                               <div class="col">
                                 Level {{ levelNumber }}:<br>
-                                <small
+                                <button
                                   v-text="'buy'"
-                                  class="pill pointer center"
+                                  class="buy-button"
+                                  :disabled="!canPurchaseThisLevel(armorIndex, levelNumber)"
                                   title="Will subtract this amount from your inventory and increase your star"
                                   @click="purchase(armors[armorIndex], levelNumber)"
-                                ></small>
+                                ></button>
                               </div>
                               <div class="col">
                                 <div v-for="(ingredient, ingredientIndex) in levelIngredients">
@@ -262,11 +263,11 @@
                                     dir="rtl"
                                   >
                                   <div class="needed">
-                                    <template v-if="totalAmountOfIngredientForThisLevel(armors[armorIndex].ingredients, levelNumber, ingredient.name, armors[armorIndex].currentLevel) <= userInventory[ingredient.name]">
+                                    <template v-if="totalAmountOfIngredientForThisLevel(armorIndex, levelNumber, ingredient.name) <= userInventory[ingredient.name]">
                                       ✔️
                                     </template>
                                     <template v-else>
-                                      {{ totalAmountOfIngredientForThisLevel(armors[armorIndex].ingredients, levelNumber, ingredient.name, armors[armorIndex].currentLevel) - userInventory[ingredient.name] }}
+                                      {{ totalAmountOfIngredientForThisLevel(armorIndex, levelNumber, ingredient.name) - userInventory[ingredient.name] }}
                                     </template>
                                   </div>
                                 </div>
