@@ -16,6 +16,7 @@
 
 :root {
   --golden: #ECD5AC;
+  --github-corner-bg: #0008;
 }
 
 /* BASE */
@@ -66,7 +67,7 @@ a:active {
 }
 input[type="text"],
 input[type="number"] {
-  background: #5554;
+  background: #6664;
   border: 0px;
   border-radius: 4px;
   margin: 1px 0px;
@@ -323,3 +324,55 @@ label {
 .zoraarmor            { background-position-x: calc(104 * -72px); }
 .zoragreaves          { background-position-x: calc(105 * -72px); }
 .zorahelm             { background-position-x: calc(106 * -72px); }
+
+/* GITHUB CORNER */
+.github-corner svg {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 80px;
+  height: 80px;
+  border: 0px;
+  fill: var(--github-corner-bg);
+}
+.github-corner .octo-body {
+  fill: var(--golden);
+}
+.github-corner .octo-arm {
+  fill: var(--golden);
+  transform-origin: 130px 106px;
+}
+.github-corner .octo-arm,
+.github-corner .octo-body {
+  mix-blend-mode: hard-light;
+}
+.github-corner:hover .octo-arm {
+  animation: octocat-wave 560ms ease-in-out;
+}
+@keyframes octocat-wave {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  20%, 60% {
+    transform: rotate(-25deg);
+  }
+  40%, 80% {
+    transform: rotate(10deg);
+  }
+}
+@media (max-width: 500px) {
+  .github-corner .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
+  }
+  .github-corner:hover .octo-arm {
+    animation: none;
+  }
+}
+@media (max-width: 320px) {
+  .github-corner svg {
+    display: none;
+  }
+  .github-corner p {
+    display: block;
+  }
+}
