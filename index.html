@@ -221,7 +221,12 @@
                       </transition>
                     </div>
                     <h4>
-                      {{ armors[armorIndex].name }}
+                      <a
+                        :href="'https://www.zeldadungeon.net/wiki/' + armors[armorIndex].name + '#Breath_of_the_Wild'"
+                        target="_blank"
+                      >
+                        {{ armors[armorIndex].name }}
+                      </a>
                     </h4>
                     <span>
                       <label>
