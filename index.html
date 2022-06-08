@@ -80,7 +80,7 @@
                       {{ ingredientsNeeded[userItem] - userInventory[userItem] }}
                     </template>
                     <template v-else>
-                      ✔️
+                      <img src="checkmark.png" alt="checkmark" class="checkmark" />
                     </template>
                   </td>
                 </tr>
@@ -241,12 +241,11 @@
 
                     <a
                       v-if="treasureMap[armors[armorIndex].name]"
-                      v-text="'🗺️'"
                       :href="'https://www.zeldadungeon.net/breath-of-the-wild-interactive-map/?id=' + treasureMap[armors[armorIndex].name]"
                       target="_blank"
                       class="no-underline"
                       title="View location on interactive map"
-                    ></a>
+                    ><img src="treasure.png" alt="treasure chest icon" class="map-icon" /></a>
                     <span v-if="armors[armorIndex].fromAmiibo" class="pill">
                       From Amiibo
                     </span>
@@ -300,7 +299,7 @@
                                   >
                                   <div class="needed">
                                     <template v-if="totalAmountOfIngredientForThisLevel(armorIndex, levelNumber, ingredient.name) <= userInventory[ingredient.name]">
-                                      ✔️
+                                      <img src="checkmark.png" alt="checkmark" class="checkmark" />
                                     </template>
                                     <template v-else>
                                       {{ totalAmountOfIngredientForThisLevel(armorIndex, levelNumber, ingredient.name) - userInventory[ingredient.name] }}

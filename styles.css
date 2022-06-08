@@ -168,6 +168,14 @@ label {
   cursor: default;
   opacity: 0.25;
 }
+.map-icon {
+  height: 17.5px;
+  vertical-align: sub;
+}
+.checkmark {
+  height: 17.5px;
+  vertical-align: text-bottom;
+}
 
 /* UTILITY */
 .blur {
