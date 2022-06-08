@@ -89,6 +89,7 @@
           </tbody>
         </table>
       </aside>
+
       <main>
         <section>
           <p>
@@ -238,6 +239,14 @@
                       </label>
                     </span>
 
+                    <a
+                      v-if="treasureMap[armors[armorIndex].name]"
+                      v-text="'🗺️'"
+                      :href="'https://www.zeldadungeon.net/breath-of-the-wild-interactive-map/?id=' + treasureMap[armors[armorIndex].name]"
+                      target="_blank"
+                      class="no-underline"
+                      title="View location on interactive map"
+                    ></a>
                     <span v-if="armors[armorIndex].fromAmiibo" class="pill">
                       From Amiibo
                     </span>

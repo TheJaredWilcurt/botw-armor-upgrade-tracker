@@ -196,6 +196,9 @@ label {
   text-decoration: none;
   vertical-align: super;
 }
+.no-underline {
+  text-decoration: none;
+}
 
 /* VUE TRANSITIONS */
 .list-enter-active,
