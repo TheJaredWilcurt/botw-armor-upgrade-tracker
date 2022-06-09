@@ -388,3 +388,10 @@ label {
     display: block;
   }
 }
+
+/* MEDIA QUERIES */
+@media (max-width: 590px) {
+  #app {
+    flex-direction: column;
+  }
+}
