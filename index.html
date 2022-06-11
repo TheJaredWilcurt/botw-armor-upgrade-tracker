@@ -73,6 +73,8 @@
                       class="inventory-input"
                       type="number"
                       dir="rtl"
+                      min="0"
+                      max="999"
                     >
                   </td>
                   <td class="right" style="min-width:40px">
@@ -296,6 +298,8 @@
                                     type="number"
                                     class="inventory-input"
                                     dir="rtl"
+                                    min="0"
+                                    max="999"
                                   >
                                   <div class="needed">
                                     <template v-if="totalAmountOfIngredientForThisLevel(armorIndex, levelNumber, ingredient.name) <= userInventory[ingredient.name]">

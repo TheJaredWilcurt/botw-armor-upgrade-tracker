@@ -3896,6 +3896,7 @@ function generateProfile () {
       }
     ],
     inventory: {
+      "Voltfruit": 0,
       "Sunshroom": 0,
       "Zapshroom": 0,
       "Rushroom": 0,
@@ -3922,7 +3923,6 @@ function generateProfile () {
       "Shard of Farosh's Horn": 0,
       "Hearty Bass": 0,
       "Hyrule Bass": 0,
-      "Voltfruit": 0,
       "Stealthfin Trout": 0,
       "Sneaky River Snail": 0,
       "Smotherwing Butterfly": 0,
@@ -4289,7 +4289,8 @@ const app = Vue.createApp({
     },
     ingredientsNeeded: function () {
       const ingredientsNeeded = generateProfile().inventory;
-      this.obtainedArmors.forEach(function (armor) {
+
+      function getCounts (armor) {
         const ingredientsLevels = Object.keys(armor.ingredients);
         ingredientsLevels.forEach(function (ingredientLevel) {
           if (ingredientLevel > armor.currentLevel) {
@@ -4301,7 +4302,12 @@ const app = Vue.createApp({
             });
           }
         });
-      });
+      }
+      if (this.totalFilter == 'all') {
+        this.armors.forEach(getCounts);
+      } else {
+        this.obtainedArmors.forEach(getCounts);
+      }
 
       const ingredients = Object.keys(ingredientsNeeded);
       if (this.totalFilter === 'required') {
