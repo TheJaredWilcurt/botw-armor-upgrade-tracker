@@ -117,6 +117,50 @@ label {
   justify-content: space-between;
 }
 
+/* NUMBER BUTTON COMPONENT */
+.number-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+.number-button-up,
+.number-button-down {
+  background: #6664;
+  border: 0px;
+  border-radius: 4px;
+  margin: 1px 0px;
+  padding: 4px;
+  color: var(--golden);
+}
+.number-button-up {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.number-button-down {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+.number-button-input[type="number"] {
+  width: 22px;
+  border-radius: 0px;
+  text-align: center;
+}
+.number-button-up:hover,
+.number-button-down:hover,
+.number-button-input[type="number"]:hover {
+  background: #6668;
+}
+.number-button-input {
+  -moz-appearance:textfield;
+}
+.number-button-input::-webkit-outer-spin-button,
+.number-button-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 /* COMPONENT */
 .card-border {
   display: inline-block;

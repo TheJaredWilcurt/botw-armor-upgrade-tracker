@@ -30,6 +30,28 @@
       <h2 id="loading" class="center">Loading···</h2>
     </header>
 
+    <template id="number-button">
+      <div class="number-button-container">
+        <button
+          v-text="'▲'"
+          class="number-button-up"
+          @click="emit(1)"
+        ></button>
+        <input
+          v-model.number="value"
+          type="number"
+          class="number-button-input"
+          min="0"
+          max="999"
+        >
+        <button
+          v-text="'▼'"
+          class="number-button-down"
+          @click="emit(-1)"
+        ></button>
+      </div>
+      </template>
+
     <div id="app" v-cloak>
       <aside>
         <label for="profile">Profile:</label>
@@ -51,8 +73,8 @@
         <div class="flex-between">
           <strong style="flex-grow: 1; width: 100%">Material</strong>
           <strong class="center">Required</strong>
-          <strong class="center" style="min-width:60px">Have</strong>
-          <strong class="center" style="min-width:40px">Need</strong>
+          <strong class="center" style="min-width:74px">Have</strong>
+          <strong class="center" style="min-width:42px">Need</strong>
         </div>
         <table>
           <tbody>
@@ -67,15 +89,8 @@
                     v-text="ingredientsNeeded[userItem]"
                     class="right"
                   ></td>
-                  <td style="min-width:60px">
-                    <input
-                      v-model.number="userInventory[userItem]"
-                      class="inventory-input"
-                      type="number"
-                      dir="rtl"
-                      min="0"
-                      max="999"
-                    >
+                  <td style="min-width:72px">
+                    <number-button v-model.number="userInventory[userItem]"></number-button>
                   </td>
                   <td class="right" style="min-width:40px">
                     <template v-if="ingredientsNeeded[userItem] - userInventory[userItem] > 0">
@@ -283,7 +298,11 @@
                                 ></button>
                               </div>
                               <div class="col">
-                                <div v-for="(ingredient, ingredientIndex) in levelIngredients">
+                                <div
+                                  v-for="(ingredient, ingredientIndex) in levelIngredients"
+                                  :key="'category' + categoryName + 'armorIndex' + categoryArmorsIndex + 'level' + levelNumber + 'ingredient' + ingredientIndex"
+                                  style="width: 130px"
+                                >
                                   <strong v-text="ingredient.quantity"></strong>
                                   {{ ingredient.name }}
                                 </div>
@@ -293,20 +312,15 @@
                                   v-for="ingredient in levelIngredients"
                                   class="row"
                                 >
-                                  <input
-                                    v-model.number="userInventory[ingredient.name]"
-                                    type="number"
-                                    class="inventory-input"
-                                    dir="rtl"
-                                    min="0"
-                                    max="999"
-                                  >
+                                  <number-button v-model.number="userInventory[ingredient.name]"></number-button>
                                   <div class="needed">
                                     <template v-if="totalAmountOfIngredientForThisLevel(armorIndex, levelNumber, ingredient.name) <= userInventory[ingredient.name]">
                                       <img src="checkmark.png" alt="checkmark" class="checkmark" />
                                     </template>
                                     <template v-else>
-                                      {{ totalAmountOfIngredientForThisLevel(armorIndex, levelNumber, ingredient.name) - userInventory[ingredient.name] }}
+                                      <span title="Needed">
+                                        {{ totalAmountOfIngredientForThisLevel(armorIndex, levelNumber, ingredient.name) - userInventory[ingredient.name] }}
+                                      </span>
                                     </template>
                                   </div>
                                 </div>

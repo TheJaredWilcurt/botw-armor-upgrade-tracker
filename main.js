@@ -4098,7 +4098,33 @@ let smoothScroll = new window.scrollToSmooth('a', {
   easing: 'easeInOutCubic'
 });
 
+const NumberButton = {
+  name: 'NumberButton',
+  template: '#number-button',
+  inheritAttrs: false,
+  props: ['modelValue'],
+  emits: ['update:modelValue'],
+  methods: {
+    emit: function (increment) {
+      this.$emit('update:modelValue', this.modelValue + increment);
+    }
+  },
+  computed: {
+    value: {
+      get: function () {
+        return this.modelValue;
+      },
+      set: function (value) {
+        this.$emit('update:modelValue', value);
+      }
+    }
+  }
+};
+
 const app = Vue.createApp({
+  components: {
+    NumberButton
+  },
   data: function () {
     return {
       showNote: false,
