@@ -73,7 +73,7 @@
         <div class="flex-between">
           <strong style="flex-grow: 1; width: 100%">Material</strong>
           <strong class="center">Required</strong>
-          <strong class="center" style="min-width:74px">Have</strong>
+          <strong class="center" style="min-width:60px">Have</strong>
           <strong class="center" style="min-width:42px">Need</strong>
         </div>
         <table>
@@ -89,7 +89,7 @@
                     v-text="ingredientsNeeded[userItem]"
                     class="right"
                   ></td>
-                  <td style="min-width:72px">
+                  <td style="min-width:56px">
                     <number-button v-model.number="userInventory[userItem]"></number-button>
                   </td>
                   <td class="right" style="min-width:40px">
@@ -301,7 +301,7 @@
                                 <div
                                   v-for="(ingredient, ingredientIndex) in levelIngredients"
                                   :key="'category' + categoryName + 'armorIndex' + categoryArmorsIndex + 'level' + levelNumber + 'ingredient' + ingredientIndex"
-                                  style="width: 130px"
+                                  style="width: 150px"
                                 >
                                   <strong v-text="ingredient.quantity"></strong>
                                   {{ ingredient.name }}

@@ -131,16 +131,19 @@ label {
   border: 0px;
   border-radius: 4px;
   margin: 1px 0px;
-  padding: 4px;
+  padding: 6px 0px 7px 0px;
   color: var(--golden);
+  font-size: 9px;
 }
 .number-button-up {
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
+  padding-left: 3px;
 }
 .number-button-down {
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
+  padding-right: 3px;
 }
 .number-button-input[type="number"] {
   width: 22px;
