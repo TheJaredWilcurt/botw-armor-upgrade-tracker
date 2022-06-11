@@ -4105,8 +4105,20 @@ const NumberButton = {
   props: ['modelValue'],
   emits: ['update:modelValue'],
   methods: {
+    clamp: function (value) {
+      value = value || 0;
+      value = parseInt(value);
+      if (!value || typeof(value) !== 'number' || isNaN(value)) {
+        value = 0;
+      }
+      value = Math.round(value);
+      value = Math.min(999, value);
+      value = Math.max(0, value);
+      return value;
+    },
     emit: function (increment) {
-      this.$emit('update:modelValue', this.modelValue + increment);
+      const value = this.clamp(this.modelValue + increment);
+      this.$emit('update:modelValue', value);
     }
   },
   computed: {
@@ -4115,6 +4127,7 @@ const NumberButton = {
         return this.modelValue;
       },
       set: function (value) {
+        value = this.clamp(value);
         this.$emit('update:modelValue', value);
       }
     }
