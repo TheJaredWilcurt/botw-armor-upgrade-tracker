@@ -4156,8 +4156,9 @@ const app = Vue.createApp({
       },
       showObtained: 'all',
       onlyShowUpgradable: true,
-      showDlc: true,
+      showDlc: false,
       showAmiibo: false,
+      hideSpoilerWarning: false,
       localStorageId: 'botwTrackerData',
       cannotBeUpgraded: [
         'Old Shirt',
@@ -4296,6 +4297,7 @@ const app = Vue.createApp({
         this.showDlc = data.showDlc;
         this.showAmiibo = data.showAmiibo;
         this.showObtained = data.showObtained;
+        this.hideSpoilerWarning = data.hideSpoilerWarning;
       }
     },
     removeLoadingText: function () {
@@ -4397,7 +4399,8 @@ const app = Vue.createApp({
         onlyShowUpgradable: this.onlyShowUpgradable,
         showDlc: this.showDlc,
         showAmiibo: this.showAmiibo,
-        showObtained: this.showObtained
+        showObtained: this.showObtained,
+        hideSpoilerWarning: this.hideSpoilerWarning
       });
     }
   },

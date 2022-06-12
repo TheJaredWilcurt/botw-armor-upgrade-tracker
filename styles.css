@@ -174,9 +174,28 @@ label {
   vertical-align: top;
 }
 .card {
-  background: #0008;
   width: 300px;
+}
+.spoiler-note {
+  height: 180vh;
+}
+.card,
+.spoiler-note,
+.authors-note {
+  background: #0008;
   padding: 8px;
+}
+.spoiler-header {
+  font-size: 60px;
+  text-align: center;
+  mix-blend-mode: hard-light;
+}
+.spoiler-pre-header {
+  font-size: 30px;
+}
+.spoiler-post-header {
+  font-family: 'fot-rodin_pro', sans-serif;
+  font-size:  15px;
 }
 .stars {
   display: inline-block;
@@ -240,6 +259,9 @@ label {
 }
 .right {
   text-align: right
+}
+.mt-lg {
+  margin-top: 60px;
 }
 .small,
 .small:visited,
@@ -393,6 +415,7 @@ label {
   height: 80px;
   border: 0px;
   fill: var(--github-corner-bg);
+  z-index: 2;
 }
 .github-corner .octo-body {
   fill: var(--golden);
