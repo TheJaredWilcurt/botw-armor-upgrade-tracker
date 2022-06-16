@@ -166,6 +166,20 @@
             <span @click="hideSpoilerWarning = !hideSpoilerWarning" class="pill pointer">
               <template v-if="hideSpoilerWarning">Show</template><template v-else>Hide</template> Spoiler Warning
             </span>
+            <template v-if="showObtained === 'speedrun100'">
+              -
+            </template>
+            <span
+              v-if="!confirmSpeedrunReset && showObtained === 'speedrun100'"
+              class="pill pointer"
+              @click="confirmSpeedrunReset = true"
+            >
+              Reset this profile's data
+            </span>
+            <template v-if="confirmSpeedrunReset">
+              <span class="pill pointer" @click="confirmSpeedrunReset = false">Nevermind, keep my data</span>&nbsp;
+              <span class="pill pointer" @click="speedrunReset">Wipe it, I'm doing a reset</span>
+            </template>
           </p>
           <transition-group name="list">
             <div v-if="showNote" class="card-border">
@@ -205,6 +219,7 @@
             <option value="all">All</option>
             <option value="obtained">Only Obtained</option>
             <option value="unobtained">Only Unobtained</option>
+            <option value="speedrun100">Only 100% Speedrun</option>
           </select>
           <label>
             <input v-model="showDlc" type="checkbox">

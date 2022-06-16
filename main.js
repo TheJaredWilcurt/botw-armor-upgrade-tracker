@@ -4155,10 +4155,11 @@ const app = Vue.createApp({
         Daruk: generateProfile()
       },
       showObtained: 'all',
-      onlyShowUpgradable: true,
+      onlyShowUpgradable: false,
       showDlc: false,
       showAmiibo: false,
       hideSpoilerWarning: false,
+      confirmSpeedrunReset: false,
       localStorageId: 'botwTrackerData',
       cannotBeUpgraded: [
         'Old Shirt',
@@ -4198,6 +4199,16 @@ const app = Vue.createApp({
         'Salvager Vest',
         'Salvager Trousers'
       ],
+      neededFor100Percent: [
+        'Champion\'s Tunic',
+        'Zora Helm',
+        'Zora Armor',
+        'Zora Greaves',
+        'Cap of the Wild',
+        'Tunic of the Wild',
+        'Trousers of the Wild',
+        'Thunder Helm'
+      ],
       smoothScroll
     };
   },
@@ -4236,7 +4247,8 @@ const app = Vue.createApp({
       let obtainedCriteria = true;
       if (
         (this.showObtained === 'obtained' && !armor.obtained) ||
-        (this.showObtained === 'unobtained' && armor.obtained)
+        (this.showObtained === 'unobtained' && armor.obtained) ||
+        (this.showObtained === 'speedrun100' && !this.neededFor100Percent.includes(armor.name))
       ){
         obtainedCriteria = false;
       }
@@ -4293,12 +4305,17 @@ const app = Vue.createApp({
       if (data) {
         this.profiles = data.profiles;
         this.currentProfile = data.currentProfile;
+        this.totalFilter = data.totalFilter || this.totalFilter;
         this.onlyShowUpgradable = data.onlyShowUpgradable;
         this.showDlc = data.showDlc;
         this.showAmiibo = data.showAmiibo;
         this.showObtained = data.showObtained;
         this.hideSpoilerWarning = data.hideSpoilerWarning;
       }
+    },
+    speedrunReset: function () {
+      this.profiles[this.currentProfile] = generateProfile();
+      this.confirmSpeedrunReset = false;
     },
     removeLoadingText: function () {
       const text = window.document.getElementById('loading');
@@ -4328,6 +4345,11 @@ const app = Vue.createApp({
         return armor.obtained;
       });
     },
+    armorsNeededFor100Percent: function () {
+      return this.armors.filter((armor) => {
+        return this.neededFor100Percent.includes(armor.name);
+      });
+    },
     ingredientsNeeded: function () {
       const ingredientsNeeded = generateProfile().inventory;
 
@@ -4344,14 +4366,19 @@ const app = Vue.createApp({
           }
         });
       }
-      if (this.totalFilter == 'all') {
+      if (this.totalFilter == 'all' && this.showObtained === 'speedrun100') {
+        this.armorsNeededFor100Percent.forEach(getCounts);
+      } else if (this.totalFilter == 'all') {
         this.armors.forEach(getCounts);
       } else {
         this.obtainedArmors.forEach(getCounts);
       }
 
       const ingredients = Object.keys(ingredientsNeeded);
-      if (this.totalFilter === 'required') {
+      if (
+        (this.totalFilter === 'required') ||
+        (this.totalFilter == 'all' && this.showObtained === 'speedrun100')
+      ) {
         ingredients.forEach((ingredient) => {
           if (!ingredientsNeeded[ingredient]) {
             delete ingredientsNeeded[ingredient];
@@ -4396,6 +4423,7 @@ const app = Vue.createApp({
       return JSON.stringify({
         currentProfile: this.currentProfile,
         profiles: this.profiles,
+        totalFilter: this.totalFilter,
         onlyShowUpgradable: this.onlyShowUpgradable,
         showDlc: this.showDlc,
         showAmiibo: this.showAmiibo,
