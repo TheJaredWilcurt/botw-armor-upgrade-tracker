@@ -171,14 +171,25 @@
             </template>
             <span
               v-if="!confirmSpeedrunReset && showObtained === 'speedrun100'"
+              v-text="'Reset this profile\'s data'"
               class="pill pointer"
+              title="Shortcut: Ctrl + Shift + Space"
               @click="confirmSpeedrunReset = true"
-            >
-              Reset this profile's data
-            </span>
+            ></span>
             <template v-if="confirmSpeedrunReset">
-              <span class="pill pointer" @click="confirmSpeedrunReset = false">Nevermind, keep my data</span>&nbsp;
-              <span class="pill pointer" @click="speedrunReset">Wipe it, I'm doing a reset</span>
+              <span
+                v-text="'Nevermind, keep my data'"
+                class="pill pointer"
+                title="Esc to cancel"
+                @click="confirmSpeedrunReset = false"
+              ></span>
+              &nbsp;
+              <span
+                v-text="'Wipe it, I\'m doing a reset'"
+                class="pill pointer"
+                title="Ctrl + Shift + Space to confirm"
+                @click="speedrunReset"
+              ></span>
             </template>
           </p>
           <transition-group name="list">

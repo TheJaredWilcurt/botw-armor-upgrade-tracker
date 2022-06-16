@@ -4134,6 +4134,30 @@ const NumberButton = {
   }
 };
 
+document.body.addEventListener('keyup', function (evt) {
+  if (app.showObtained !== 'speedrun100') {
+    retrun;
+  }
+
+  const space = evt.keyCode === 32;
+  const escape = evt.keyCode === 27;
+  const ctrl = evt.ctrlKey;
+  const shift = evt.shiftKey;
+
+
+  if (!ctrl && !shift && escape && app.confirmSpeedrunReset) {
+    app.confirmSpeedrunReset = false;
+  }
+
+  if (ctrl && shift && space) {
+    if (!app.confirmSpeedrunReset) {
+      app.confirmSpeedrunReset = true;
+    } else {
+      app.speedrunReset();
+    }
+  }
+});
+
 const app = Vue.createApp({
   components: {
     NumberButton
