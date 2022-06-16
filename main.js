@@ -4136,7 +4136,7 @@ const NumberButton = {
 
 document.body.addEventListener('keyup', function (evt) {
   if (app.showObtained !== 'speedrun100') {
-    retrun;
+    return;
   }
 
   const space = evt.keyCode === 32;
