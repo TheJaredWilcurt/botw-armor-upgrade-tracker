@@ -3994,7 +3994,7 @@ const treasureMap = Object.freeze({
   'Desert Voe Spaulder': 'The Secret Club\'s Secret',
   'Desert Voe Trousers': 'The Secret Club\'s Secret',
   'Flamebreaker Helm': 'Ripped and Shredded',
-  'Flamebreaker Armor': 'Southern Mine',
+  'Flamebreaker Armor': 'Fireproof Lizard Roundup',
   'Flamebreaker Boots': 'Ripped and Shredded',
   'Gerudo Veil': 'Inn01',
   'Gerudo Top': 'Inn01',
