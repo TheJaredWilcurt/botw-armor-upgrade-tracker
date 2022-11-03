@@ -305,22 +305,26 @@
                           v-if="armors[armorIndex].obtained && !cannotBeUpgraded.includes(armors[armorIndex].name)"
                           class="stars"
                         >
-                          <span
+                          <button
                             v-text="armors[armorIndex].currentLevel === 0 ? '☆' : '★'"
+                            :aria-label="armors[armorIndex].currentLevel === 0 ? 'Set to star level 1' : 'Set to star level 0'"
                             @click="armors[armorIndex].currentLevel = armors[armorIndex].currentLevel === 1 ? 0 : 1"
-                          ></span>
-                          <span
+                          ></button>
+                          <button
                             v-text="armors[armorIndex].currentLevel < 2 ? '☆' : '★'"
+                            aria-label="Set to star level 2"
                             @click="armors[armorIndex].currentLevel = 2"
-                          ></span>
-                          <span
+                          ></button>
+                          <button
                             v-text="armors[armorIndex].currentLevel < 3 ? '☆' : '★'"
+                            aria-label="Set to star level 3"
                             @click="armors[armorIndex].currentLevel = 3"
-                          ></span>
-                          <span
+                          ></button>
+                          <button
                             v-text="armors[armorIndex].currentLevel < 4 ? '☆' : '★'"
+                            aria-label="Set to star level 4"
                             @click="armors[armorIndex].currentLevel = 4"
-                          ></span>
+                          ></button>
                         </span>
                       </transition>
                     </div>
@@ -379,7 +383,7 @@
                                   v-text="'buy'"
                                   class="buy-button"
                                   :disabled="!canPurchaseThisLevel(armorIndex, levelNumber)"
-                                  title="Will subtract this amount from your inventory and increase your star"
+                                  title="Will subtract this amount from your inventory and increase your star level"
                                   @click="purchase(armors[armorIndex], levelNumber)"
                                 ></button>
                               </div>

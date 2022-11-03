@@ -201,8 +201,13 @@ label {
   display: inline-block;
   font-size: 0px;
 }
-.stars span {
+.stars button {
+  background: transparent;
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
   font-size: 20px;
+  color: currentColor;
   cursor: pointer;
 }
 .pill,
