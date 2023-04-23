@@ -1412,7 +1412,7 @@ function generateProfile () {
             },
             {
               "name": "Lynel Hoof",
-              "quantity": 4
+              "quantity": 3
             }
           ]
         }
@@ -1463,7 +1463,7 @@ function generateProfile () {
             },
             {
               "name": "Lynel Hoof",
-              "quantity": 4
+              "quantity": 2
             }
           ]
         }
@@ -1514,7 +1514,7 @@ function generateProfile () {
             },
             {
               "name": "Lynel Hoof",
-              "quantity": 4
+              "quantity": 3
             }
           ]
         }
