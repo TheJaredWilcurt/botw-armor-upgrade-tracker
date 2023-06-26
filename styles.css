@@ -2,14 +2,15 @@
 @font-face {
   font-family: 'the_wild_breath_of_zelda';
   src: url('fonts/the_wild_breath_of_zelda.woff2') format('woff2'),
-       url('fonts/the_wild_breath_of_zelda.woff') format('woff');
+    url('fonts/the_wild_breath_of_zelda.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'fot-rodin_pro';
   src: url('fonts/fot-rodinprodb.woff2') format('woff2'),
-       url('fonts/fot-rodinprodb.woff') format('woff');
+    url('fonts/fot-rodinprodb.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -23,33 +24,40 @@
 [v-cloak] {
   display: none !important;
 }
+
 body {
   background: #333;
   background-attachment: fixed;
-  background-image: url('bg.png');
+  background-image: url('bg.jpg');
   background-size: cover;
   font-family: 'fot-rodin_pro', sans-serif;
   color: var(--golden);
 }
+
 h1 {
   font-size: 60px;
   text-align: center;
   mix-blend-mode: hard-light;
 }
+
 h2 {
   font-size: 30px;
 }
+
 h3 {
   font-size: 24px;
 }
+
 h4 {
   font-size: 20px;
 }
+
 h1,
 h2,
 h3 {
   font-family: 'the_wild_breath_of_zelda', 'fot-rodin_pro', sans-serif;
 }
+
 h1,
 h2,
 h3,
@@ -57,15 +65,18 @@ h4,
 h5 {
   vertical-align: middle;
 }
+
 a,
 a:visited {
   color: #CCF;
 }
+
 a:hover,
 a:focus,
 a:active {
   color: #EEF;
 }
+
 input[type="text"],
 input[type="number"] {
   background: #6664;
@@ -75,6 +86,7 @@ input[type="number"] {
   padding: 4px;
   color: var(--golden);
 }
+
 input[type="number"][dir="rtl"] {
   padding-right: 6px;
 }
@@ -93,25 +105,31 @@ select {
   display: flex;
   justify-content: space-evenly;
 }
+
 aside {
   width: 300px;
   margin-right: 8px;
   padding: 10px;
 }
+
 main {
   max-width: 1000px;
 }
+
 label {
   display: inline-block;
 }
+
 .row {
   display: flex;
   justify-content: space-between;
 }
+
 .col {
   display: flex;
   flex-direction: column;
 }
+
 .flex-between {
   display: flex;
   justify-content: space-between;
@@ -125,6 +143,7 @@ label {
   flex-direction: row;
   flex-wrap: nowrap;
 }
+
 .number-button-up,
 .number-button-down {
   background: #6664;
@@ -135,29 +154,35 @@ label {
   color: var(--golden);
   font-size: 9px;
 }
+
 .number-button-up {
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
   padding-left: 3px;
 }
+
 .number-button-down {
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
   padding-right: 3px;
 }
+
 .number-button-input[type="number"] {
   width: 22px;
   border-radius: 0px;
   text-align: center;
 }
+
 .number-button-up:hover,
 .number-button-down:hover,
 .number-button-input[type="number"]:hover {
   background: #6668;
 }
+
 .number-button-input {
-  -moz-appearance:textfield;
+  -moz-appearance: textfield;
 }
+
 .number-button-input::-webkit-outer-spin-button,
 .number-button-input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -173,34 +198,42 @@ label {
   padding: 2px;
   vertical-align: top;
 }
+
 .card {
   width: 300px;
 }
+
 .spoiler-note {
   height: 180vh;
 }
+
 .card,
 .spoiler-note,
 .authors-note {
   background: #0008;
   padding: 8px;
 }
+
 .spoiler-header {
   font-size: 60px;
   text-align: center;
   mix-blend-mode: hard-light;
 }
+
 .spoiler-pre-header {
   font-size: 30px;
 }
+
 .spoiler-post-header {
   font-family: 'fot-rodin_pro', sans-serif;
-  font-size:  15px;
+  font-size: 15px;
 }
+
 .stars {
   display: inline-block;
   font-size: 0px;
 }
+
 .stars button {
   background: transparent;
   border: 0px;
@@ -210,6 +243,7 @@ label {
   color: currentColor;
   cursor: pointer;
 }
+
 .pill,
 .buy-button {
   display: inline-block;
@@ -218,31 +252,38 @@ label {
   padding: 2px 5px;
   color: #333;
 }
+
 .image-container {
   float: right;
   width: 70px;
   height: 70px;
 }
+
 .armor {
   max-height: 70px;
 }
+
 .needed {
   min-width: 25px;
   text-align: center;
 }
+
 .buy-button {
   border: 0px;
   text-align: center;
   cursor: pointer;
 }
+
 .buy-button[disabled] {
   cursor: default;
   opacity: 0.25;
 }
+
 .map-icon {
   height: 17.5px;
   vertical-align: sub;
 }
+
 .checkmark {
   height: 17.5px;
   vertical-align: text-bottom;
@@ -252,22 +293,28 @@ label {
 .blur {
   filter: blur(15px);
 }
+
 .pointer {
   cursor: pointer;
 }
+
 .inventory-input {
   width: 50px;
   text-align: right;
 }
+
 .center {
   text-align: center;
 }
+
 .right {
   text-align: right
 }
+
 .mt-lg {
   margin-top: 60px;
 }
+
 .small,
 .small:visited,
 .small:hover,
@@ -278,6 +325,7 @@ label {
   text-decoration: none;
   vertical-align: super;
 }
+
 .no-underline {
   text-decoration: none;
 }
@@ -287,6 +335,7 @@ label {
 .list-leave-active {
   transition: 0.5s ease all;
 }
+
 .list-enter-from,
 .list-leave-to {
   opacity: 0.0;
@@ -303,113 +352,433 @@ label {
   transition: 3s ease all;
 }
 
-.amberearrings        { background-position-x: calc(0 * -72px); }
-.ancientcuirass       { background-position-x: calc(1 * -72px); }
-.ancientgreaves       { background-position-x: calc(2 * -72px); }
-.ancienthelm          { background-position-x: calc(3 * -72px); }
-.barbarianarmor       { background-position-x: calc(4 * -72px); }
-.barbarianhelm        { background-position-x: calc(5 * -72px); }
-.barbarianlegwraps    { background-position-x: calc(6 * -72px); }
-.bokoblinmask         { background-position-x: calc(7 * -72px); }
-.capofthehero         { background-position-x: calc(8 * -72px); }
-.capofthesky          { background-position-x: calc(9 * -72px); }
-.capofthewild         { background-position-x: calc(10 * -72px); }
-.capofthewind         { background-position-x: calc(11 * -72px); }
-.capoftime            { background-position-x: calc(12 * -72px); }
-.capoftwilight        { background-position-x: calc(13 * -72px); }
-.championstunic       { background-position-x: calc(14 * -72px); }
-.climbersbandanna     { background-position-x: calc(15 * -72px); }
-.climbingboots        { background-position-x: calc(16 * -72px); }
-.climbinggear         { background-position-x: calc(17 * -72px); }
-.darkhood             { background-position-x: calc(18 * -72px); }
-.darktrousers         { background-position-x: calc(19 * -72px); }
-.darktunic            { background-position-x: calc(20 * -72px); }
-.desertvoeheadband    { background-position-x: calc(21 * -72px); }
-.desertvoespaulder    { background-position-x: calc(22 * -72px); }
-.desertvoetrousers    { background-position-x: calc(23 * -72px); }
-.diamondcirclet       { background-position-x: calc(24 * -72px); }
-.fiercedeityarmor     { background-position-x: calc(25 * -72px); }
-.fiercedeityboots     { background-position-x: calc(26 * -72px); }
-.fiercedeitymask      { background-position-x: calc(27 * -72px); }
-.flamebreakerarmor    { background-position-x: calc(28 * -72px); }
-.flamebreakerboots    { background-position-x: calc(29 * -72px); }
-.flamebreakerhelm     { background-position-x: calc(30 * -72px); }
-.gerudosirwal         { background-position-x: calc(31 * -72px); }
-.gerudotop            { background-position-x: calc(32 * -72px); }
-.gerudoveil           { background-position-x: calc(33 * -72px); }
-.hylianhood           { background-position-x: calc(34 * -72px); }
-.hyliantrousers       { background-position-x: calc(35 * -72px); }
-.hyliantunic          { background-position-x: calc(36 * -72px); }
-.islandlobstershirt   { background-position-x: calc(37 * -72px); }
-.korokmask            { background-position-x: calc(38 * -72px); }
-.lizalfosmask         { background-position-x: calc(39 * -72px); }
-.lynelmask            { background-position-x: calc(40 * -72px); }
-.majorasmask          { background-position-x: calc(41 * -72px); }
-.midnashelmet         { background-position-x: calc(42 * -72px); }
-.moblinmask           { background-position-x: calc(43 * -72px); }
-.nintendoswitchshirt  { background-position-x: calc(44 * -72px); }
-.oldshirt             { background-position-x: calc(45 * -72px); }
-.opalearrings         { background-position-x: calc(46 * -72px); }
-.phantomarmor         { background-position-x: calc(47 * -72px); }
-.phantomganonarmor    { background-position-x: calc(48 * -72px); }
-.phantomganongreaves  { background-position-x: calc(49 * -72px); }
-.phantomganonskull    { background-position-x: calc(50 * -72px); }
-.phantomgreaves       { background-position-x: calc(51 * -72px); }
-.phantomhelmet        { background-position-x: calc(52 * -72px); }
-.radiantmask          { background-position-x: calc(53 * -72px); }
-.radiantshirt         { background-position-x: calc(54 * -72px); }
-.radianttights        { background-position-x: calc(55 * -72px); }
-.ravioshood           { background-position-x: calc(56 * -72px); }
-.royalguardboots      { background-position-x: calc(57 * -72px); }
-.royalguardcap        { background-position-x: calc(58 * -72px); }
-.royalguarduniform    { background-position-x: calc(59 * -72px); }
-.rubberarmor          { background-position-x: calc(60 * -72px); }
-.rubberhelm           { background-position-x: calc(61 * -72px); }
-.rubbertights         { background-position-x: calc(62 * -72px); }
-.rubycirclet          { background-position-x: calc(63 * -72px); }
-.salvagerheadwear     { background-position-x: calc(64 * -72px); }
-.salvagertrousers     { background-position-x: calc(65 * -72px); }
-.salvagervest         { background-position-x: calc(66 * -72px); }
-.sandboots            { background-position-x: calc(67 * -72px); }
-.sapphirecirclet      { background-position-x: calc(68 * -72px); }
-.sheiksmask           { background-position-x: calc(69 * -72px); }
-.snowboots            { background-position-x: calc(70 * -72px); }
-.snowquillheaddress   { background-position-x: calc(71 * -72px); }
-.snowquilltrousers    { background-position-x: calc(72 * -72px); }
-.snowquilltunic       { background-position-x: calc(73 * -72px); }
-.soldiersarmor        { background-position-x: calc(74 * -72px); }
-.soldiersgreaves      { background-position-x: calc(75 * -72px); }
-.soldiershelm         { background-position-x: calc(76 * -72px); }
-.stealthchestguard    { background-position-x: calc(77 * -72px); }
-.stealthmask          { background-position-x: calc(78 * -72px); }
-.stealthtights        { background-position-x: calc(79 * -72px); }
-.thunderhelm          { background-position-x: calc(80 * -72px); }
-.tingleshood          { background-position-x: calc(81 * -72px); }
-.tinglesshirt         { background-position-x: calc(82 * -72px); }
-.tinglestights        { background-position-x: calc(83 * -72px); }
-.topazearrings        { background-position-x: calc(84 * -72px); }
-.trousersofthehero    { background-position-x: calc(85 * -72px); }
-.trousersofthesky     { background-position-x: calc(86 * -72px); }
-.trousersofthewild    { background-position-x: calc(87 * -72px); }
-.trousersofthewind    { background-position-x: calc(88 * -72px); }
-.trousersoftime       { background-position-x: calc(89 * -72px); }
-.trousersoftwilight   { background-position-x: calc(90 * -72px); }
-.tunicofthehero       { background-position-x: calc(91 * -72px); }
-.tunicofthesky        { background-position-x: calc(92 * -72px); }
-.tunicofthewild       { background-position-x: calc(93 * -72px); }
-.tunicofthewind       { background-position-x: calc(94 * -72px); }
-.tunicoftime          { background-position-x: calc(95 * -72px); }
-.tunicoftwilight      { background-position-x: calc(96 * -72px); }
-.vahmedohdivinehelm   { background-position-x: calc(97 * -72px); }
-.vahnaborisdivinehelm { background-position-x: calc(98 * -72px); }
-.vahrudaniadivinehelm { background-position-x: calc(99 * -72px); }
-.vahrutadivinehelm    { background-position-x: calc(100 * -72px); }
-.warmdoublet          { background-position-x: calc(101 * -72px); }
-.well-worntrousers    { background-position-x: calc(102 * -72px); }
-.zantshelmet          { background-position-x: calc(103 * -72px); }
-.zoraarmor            { background-position-x: calc(104 * -72px); }
-.zoragreaves          { background-position-x: calc(105 * -72px); }
-.zorahelm             { background-position-x: calc(106 * -72px); }
+.amberearrings {
+  background-position-x: calc(0 * -72px);
+}
+
+.ancientcuirass {
+  background-position-x: calc(1 * -72px);
+}
+
+.ancientgreaves {
+  background-position-x: calc(2 * -72px);
+}
+
+.ancienthelm {
+  background-position-x: calc(3 * -72px);
+}
+
+.barbarianarmor {
+  background-position-x: calc(4 * -72px);
+}
+
+.barbarianhelm {
+  background-position-x: calc(5 * -72px);
+}
+
+.barbarianlegwraps {
+  background-position-x: calc(6 * -72px);
+}
+
+.bokoblinmask {
+  background-position-x: calc(7 * -72px);
+}
+
+.capofthehero {
+  background-position-x: calc(8 * -72px);
+}
+
+.capofthesky {
+  background-position-x: calc(9 * -72px);
+}
+
+.capofthewild {
+  background-position-x: calc(10 * -72px);
+}
+
+.capofthewind {
+  background-position-x: calc(11 * -72px);
+}
+
+.capoftime {
+  background-position-x: calc(12 * -72px);
+}
+
+.capoftwilight {
+  background-position-x: calc(13 * -72px);
+}
+
+.championstunic {
+  background-position-x: calc(14 * -72px);
+}
+
+.climbersbandanna {
+  background-position-x: calc(15 * -72px);
+}
+
+.climbingboots {
+  background-position-x: calc(16 * -72px);
+}
+
+.climbinggear {
+  background-position-x: calc(17 * -72px);
+}
+
+.darkhood {
+  background-position-x: calc(18 * -72px);
+}
+
+.darktrousers {
+  background-position-x: calc(19 * -72px);
+}
+
+.darktunic {
+  background-position-x: calc(20 * -72px);
+}
+
+.desertvoeheadband {
+  background-position-x: calc(21 * -72px);
+}
+
+.desertvoespaulder {
+  background-position-x: calc(22 * -72px);
+}
+
+.desertvoetrousers {
+  background-position-x: calc(23 * -72px);
+}
+
+.diamondcirclet {
+  background-position-x: calc(24 * -72px);
+}
+
+.fiercedeityarmor {
+  background-position-x: calc(25 * -72px);
+}
+
+.fiercedeityboots {
+  background-position-x: calc(26 * -72px);
+}
+
+.fiercedeitymask {
+  background-position-x: calc(27 * -72px);
+}
+
+.flamebreakerarmor {
+  background-position-x: calc(28 * -72px);
+}
+
+.flamebreakerboots {
+  background-position-x: calc(29 * -72px);
+}
+
+.flamebreakerhelm {
+  background-position-x: calc(30 * -72px);
+}
+
+.gerudosirwal {
+  background-position-x: calc(31 * -72px);
+}
+
+.gerudotop {
+  background-position-x: calc(32 * -72px);
+}
+
+.gerudoveil {
+  background-position-x: calc(33 * -72px);
+}
+
+.hylianhood {
+  background-position-x: calc(34 * -72px);
+}
+
+.hyliantrousers {
+  background-position-x: calc(35 * -72px);
+}
+
+.hyliantunic {
+  background-position-x: calc(36 * -72px);
+}
+
+.islandlobstershirt {
+  background-position-x: calc(37 * -72px);
+}
+
+.korokmask {
+  background-position-x: calc(38 * -72px);
+}
+
+.lizalfosmask {
+  background-position-x: calc(39 * -72px);
+}
+
+.lynelmask {
+  background-position-x: calc(40 * -72px);
+}
+
+.majorasmask {
+  background-position-x: calc(41 * -72px);
+}
+
+.midnashelmet {
+  background-position-x: calc(42 * -72px);
+}
+
+.moblinmask {
+  background-position-x: calc(43 * -72px);
+}
+
+.nintendoswitchshirt {
+  background-position-x: calc(44 * -72px);
+}
+
+.oldshirt {
+  background-position-x: calc(45 * -72px);
+}
+
+.opalearrings {
+  background-position-x: calc(46 * -72px);
+}
+
+.phantomarmor {
+  background-position-x: calc(47 * -72px);
+}
+
+.phantomganonarmor {
+  background-position-x: calc(48 * -72px);
+}
+
+.phantomganongreaves {
+  background-position-x: calc(49 * -72px);
+}
+
+.phantomganonskull {
+  background-position-x: calc(50 * -72px);
+}
+
+.phantomgreaves {
+  background-position-x: calc(51 * -72px);
+}
+
+.phantomhelmet {
+  background-position-x: calc(52 * -72px);
+}
+
+.radiantmask {
+  background-position-x: calc(53 * -72px);
+}
+
+.radiantshirt {
+  background-position-x: calc(54 * -72px);
+}
+
+.radianttights {
+  background-position-x: calc(55 * -72px);
+}
+
+.ravioshood {
+  background-position-x: calc(56 * -72px);
+}
+
+.royalguardboots {
+  background-position-x: calc(57 * -72px);
+}
+
+.royalguardcap {
+  background-position-x: calc(58 * -72px);
+}
+
+.royalguarduniform {
+  background-position-x: calc(59 * -72px);
+}
+
+.rubberarmor {
+  background-position-x: calc(60 * -72px);
+}
+
+.rubberhelm {
+  background-position-x: calc(61 * -72px);
+}
+
+.rubbertights {
+  background-position-x: calc(62 * -72px);
+}
+
+.rubycirclet {
+  background-position-x: calc(63 * -72px);
+}
+
+.salvagerheadwear {
+  background-position-x: calc(64 * -72px);
+}
+
+.salvagertrousers {
+  background-position-x: calc(65 * -72px);
+}
+
+.salvagervest {
+  background-position-x: calc(66 * -72px);
+}
+
+.sandboots {
+  background-position-x: calc(67 * -72px);
+}
+
+.sapphirecirclet {
+  background-position-x: calc(68 * -72px);
+}
+
+.sheiksmask {
+  background-position-x: calc(69 * -72px);
+}
+
+.snowboots {
+  background-position-x: calc(70 * -72px);
+}
+
+.snowquillheaddress {
+  background-position-x: calc(71 * -72px);
+}
+
+.snowquilltrousers {
+  background-position-x: calc(72 * -72px);
+}
+
+.snowquilltunic {
+  background-position-x: calc(73 * -72px);
+}
+
+.soldiersarmor {
+  background-position-x: calc(74 * -72px);
+}
+
+.soldiersgreaves {
+  background-position-x: calc(75 * -72px);
+}
+
+.soldiershelm {
+  background-position-x: calc(76 * -72px);
+}
+
+.stealthchestguard {
+  background-position-x: calc(77 * -72px);
+}
+
+.stealthmask {
+  background-position-x: calc(78 * -72px);
+}
+
+.stealthtights {
+  background-position-x: calc(79 * -72px);
+}
+
+.thunderhelm {
+  background-position-x: calc(80 * -72px);
+}
+
+.tingleshood {
+  background-position-x: calc(81 * -72px);
+}
+
+.tinglesshirt {
+  background-position-x: calc(82 * -72px);
+}
+
+.tinglestights {
+  background-position-x: calc(83 * -72px);
+}
+
+.topazearrings {
+  background-position-x: calc(84 * -72px);
+}
+
+.trousersofthehero {
+  background-position-x: calc(85 * -72px);
+}
+
+.trousersofthesky {
+  background-position-x: calc(86 * -72px);
+}
+
+.trousersofthewild {
+  background-position-x: calc(87 * -72px);
+}
+
+.trousersofthewind {
+  background-position-x: calc(88 * -72px);
+}
+
+.trousersoftime {
+  background-position-x: calc(89 * -72px);
+}
+
+.trousersoftwilight {
+  background-position-x: calc(90 * -72px);
+}
+
+.tunicofthehero {
+  background-position-x: calc(91 * -72px);
+}
+
+.tunicofthesky {
+  background-position-x: calc(92 * -72px);
+}
+
+.tunicofthewild {
+  background-position-x: calc(93 * -72px);
+}
+
+.tunicofthewind {
+  background-position-x: calc(94 * -72px);
+}
+
+.tunicoftime {
+  background-position-x: calc(95 * -72px);
+}
+
+.tunicoftwilight {
+  background-position-x: calc(96 * -72px);
+}
+
+.vahmedohdivinehelm {
+  background-position-x: calc(97 * -72px);
+}
+
+.vahnaborisdivinehelm {
+  background-position-x: calc(98 * -72px);
+}
+
+.vahrudaniadivinehelm {
+  background-position-x: calc(99 * -72px);
+}
+
+.vahrutadivinehelm {
+  background-position-x: calc(100 * -72px);
+}
+
+.warmdoublet {
+  background-position-x: calc(101 * -72px);
+}
+
+.well-worntrousers {
+  background-position-x: calc(102 * -72px);
+}
+
+.zantshelmet {
+  background-position-x: calc(103 * -72px);
+}
+
+.zoraarmor {
+  background-position-x: calc(104 * -72px);
+}
+
+.zoragreaves {
+  background-position-x: calc(105 * -72px);
+}
+
+.zorahelm {
+  background-position-x: calc(106 * -72px);
+}
 
 /* GITHUB CORNER */
 .github-corner svg {
@@ -422,43 +791,58 @@ label {
   fill: var(--github-corner-bg);
   z-index: 2;
 }
+
 .github-corner .octo-body {
   fill: var(--golden);
 }
+
 .github-corner .octo-arm {
   fill: var(--golden);
   transform-origin: 130px 106px;
 }
+
 .github-corner .octo-arm,
 .github-corner .octo-body {
   mix-blend-mode: hard-light;
 }
+
 .github-corner:hover .octo-arm {
   animation: octocat-wave 560ms ease-in-out;
 }
+
 @keyframes octocat-wave {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: rotate(0deg);
   }
-  20%, 60% {
+
+  20%,
+  60% {
     transform: rotate(-25deg);
   }
-  40%, 80% {
+
+  40%,
+  80% {
     transform: rotate(10deg);
   }
 }
+
 @media (max-width: 500px) {
   .github-corner .octo-arm {
     animation: octocat-wave 560ms ease-in-out;
   }
+
   .github-corner:hover .octo-arm {
     animation: none;
   }
 }
+
 @media (max-width: 320px) {
   .github-corner svg {
     display: none;
   }
+
   .github-corner p {
     display: block;
   }

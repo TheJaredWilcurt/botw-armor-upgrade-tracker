@@ -1,126 +1,98 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>BOTW Armor Upgrade Tracker</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="shortcut icon" href="triforce.png">
-    <script defer src="https://unpkg.com/scrolltosmooth@2.2.1/dist/scrolltosmooth.min.js"></script>
-    <script defer src="https://unpkg.com/vue@3.2.36/dist/vue.global.prod.js"></script>
-    <script defer src="main.js"></script>
-  </head>
-  <body>
-    <header>
-      <a
-        href="https://github.com/TheJaredWilcurt/botw-armor-upgrade-tracker"
-        class="github-corner"
-        title="Edit this page on GitHub"
-      >
-        <svg viewBox="0 0 250 250">
-          <path d="M0 0l115 115h15l12 27 108 108v-250z" />
-          <path class="octo-arm" d="M128.3 109c-14.5-9.3-9.3-19.4-9.3-19.4 3-6.9 1.5-11 1.5-11-1.3-6.6 2.9-2.3 2.9-2.3 3.9 4.6 2.1 11 2.1 11-2.6 10.3 5.1 14.6 8.9 15.9" />
-          <path class="octo-body" d="M115 115c-.1.1 3.7 1.5 4.8.4l13.9-13.8c3.2-2.4 6.2-3.2 8.5-3-8.4-10.6-14.7-24.2 1.6-40.6 4.7-4.6 10.2-6.8 15.9-7 .6-1.6 3.5-7.4 11.7-10.9 0 0 4.7 2.4 7.4 16.1 4.3 2.4 8.4 5.6 12.1 9.2 3.6 3.6 6.8 7.8 9.2 12.2 13.7 2.6 16.2 7.3 16.2 7.3-3.6 8.2-9.4 11.1-10.9 11.7-.3 5.8-2.4 11.2-7.1 15.9-16.4 16.4-30 10-40.6 1.6.2 2.8-1 6.8-5 10.8l-11.7 11.6c-1.2 1.2.6 5.4.8 5.3z" />
-        </svg>
-      </a>
 
-      <h1 id="top" title="The Legend of Zelda: Breath of the Wild - Armor Upgrade Tracker">
-        BOTW Armor Upgrade Tracker
-      </h1>
+<head>
+  <meta charset="utf-8">
+  <title>TotK Armor Upgrade Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="shortcut icon" href="triforce.png">
+  <script defer src="https://unpkg.com/scrolltosmooth@2.2.1/dist/scrolltosmooth.min.js"></script>
+  <script defer src="https://unpkg.com/vue@3.2.36/dist/vue.global.prod.js"></script>
+  <script defer src="main.js"></script>
+</head>
 
-      <h2 id="loading" class="center">Loading···</h2>
-    </header>
+<body>
+  <header>
+    <a href="https://github.com/Respheal/totk-armor-upgrade-tracker" class="github-corner"
+      title="Edit this page on GitHub">
+      <svg viewBox="0 0 250 250">
+        <path d="M0 0l115 115h15l12 27 108 108v-250z" />
+        <path class="octo-arm"
+          d="M128.3 109c-14.5-9.3-9.3-19.4-9.3-19.4 3-6.9 1.5-11 1.5-11-1.3-6.6 2.9-2.3 2.9-2.3 3.9 4.6 2.1 11 2.1 11-2.6 10.3 5.1 14.6 8.9 15.9" />
+        <path class="octo-body"
+          d="M115 115c-.1.1 3.7 1.5 4.8.4l13.9-13.8c3.2-2.4 6.2-3.2 8.5-3-8.4-10.6-14.7-24.2 1.6-40.6 4.7-4.6 10.2-6.8 15.9-7 .6-1.6 3.5-7.4 11.7-10.9 0 0 4.7 2.4 7.4 16.1 4.3 2.4 8.4 5.6 12.1 9.2 3.6 3.6 6.8 7.8 9.2 12.2 13.7 2.6 16.2 7.3 16.2 7.3-3.6 8.2-9.4 11.1-10.9 11.7-.3 5.8-2.4 11.2-7.1 15.9-16.4 16.4-30 10-40.6 1.6.2 2.8-1 6.8-5 10.8l-11.7 11.6c-1.2 1.2.6 5.4.8 5.3z" />
+      </svg>
+    </a>
 
-    <template id="number-button">
-      <div class="number-button-container">
-        <button
-          v-text="'▲'"
-          class="number-button-up"
-          title="increment"
-          @click="emit(1)"
-        ></button>
-        <input
-          v-model.number="value"
-          type="number"
-          class="number-button-input"
-          min="0"
-          max="999"
-        >
-        <button
-          v-text="'▼'"
-          class="number-button-down"
-          title="decrement"
-          @click="emit(-1)"
-        ></button>
-      </div>
-    </template>
+    <h1 id="top" title="The Legend of Zelda: Tears of the Kingdom - Armor Upgrade Tracker">
+      TotK Armor Upgrade Tracker
+    </h1>
 
-    <div id="app" v-cloak>
-      <aside>
-        <label for="profile">Profile:</label>
-        <select id="profile" v-model="currentProfile">
-          <option
-            v-for="(profile, profileName) in profiles"
-            :value="profileName"
-          >{{ profileName }}</option>
+    <h2 id="loading" class="center">Loading···</h2>
+  </header>
+
+  <template id="number-button">
+    <div class="number-button-container">
+      <button v-text="'▲'" class="number-button-up" title="increment" @click="emit(1)"></button>
+      <input v-model.number="value" type="number" class="number-button-input" min="0" max="999">
+      <button v-text="'▼'" class="number-button-down" title="decrement" @click="emit(-1)"></button>
+    </div>
+  </template>
+
+  <div id="app" v-cloak>
+    <aside>
+      <label for="profile">Profile:</label>
+      <select id="profile" v-model="currentProfile">
+        <option v-for="(profile, profileName) in profiles" :value="profileName">{{ profileName }}</option>
+      </select>
+      <h2 class="flex-between">
+        Totals
+        <select v-model="totalFilter">
+          <option value="all">All</option>
+          <option value="required">Required</option>
+          <option value="have">Have</option>
+          <option value="need">Need</option>
         </select>
-        <h2 class="flex-between">
-          Totals
-          <select v-model="totalFilter">
-            <option value="all">All</option>
-            <option value="required">Required</option>
-            <option value="have">Have</option>
-            <option value="need">Need</option>
-          </select>
-        </h2>
-        <div class="flex-between">
-          <strong style="flex-grow: 1; width: 100%">Material</strong>
-          <strong class="center">Required</strong>
-          <strong class="center" style="min-width:60px">Have</strong>
-          <strong class="center" style="min-width:42px">Need</strong>
-        </div>
-        <table>
-          <tbody>
-            <transition-group name="list">
-              <template
-                v-for="(userValue, userItem) in ingredientsNeeded"
-                :key="'userInventory' + userItem"
-              >
-                <tr>
-                  <td v-text="userItem" style="flex-grow: 1; width: 100%"></td>
-                  <td
-                    v-text="ingredientsNeeded[userItem]"
-                    class="right"
-                  ></td>
-                  <td style="min-width:56px">
-                    <number-button v-model.number="userInventory[userItem]"></number-button>
-                  </td>
-                  <td class="right" style="min-width:40px">
-                    <template v-if="ingredientsNeeded[userItem] - userInventory[userItem] > 0">
-                      {{ ingredientsNeeded[userItem] - userInventory[userItem] }}
-                    </template>
-                    <template v-else>
-                      <img src="checkmark.png" alt="checkmark" class="checkmark" />
-                    </template>
-                  </td>
-                </tr>
-              </template>
-            </transition-group>
-          </tbody>
-        </table>
-      </aside>
+      </h2>
+      <div class="flex-between">
+        <strong style="flex-grow: 1; width: 100%">Material</strong>
+        <strong class="center">Required</strong>
+        <strong class="center" style="min-width:60px">Have</strong>
+        <strong class="center" style="min-width:42px">Need</strong>
+      </div>
+      <table>
+        <tbody>
+          <transition-group name="list">
+            <template v-for="(userValue, userItem) in ingredientsNeeded" :key="'userInventory' + userItem">
+              <tr>
+                <td v-text="userItem" style="flex-grow: 1; width: 100%"></td>
+                <td v-text="ingredientsNeeded[userItem]" class="right"></td>
+                <td style="min-width:56px">
+                  <number-button v-model.number="userInventory[userItem]"></number-button>
+                </td>
+                <td class="right" style="min-width:40px">
+                  <template v-if="ingredientsNeeded[userItem] - userInventory[userItem] > 0">
+                    {{ ingredientsNeeded[userItem] - userInventory[userItem] }}
+                  </template>
+                  <template v-else>
+                    <img src="checkmark.png" alt="checkmark" class="checkmark" />
+                  </template>
+                </td>
+              </tr>
+            </template>
+          </transition-group>
+        </tbody>
+      </table>
+    </aside>
 
-      <main>
-        <transition name="list">
-          <section
-            v-if="!hideSpoilerWarning"
-            id="spoiler-warning-section"
-            class="card-border"
-          >
-            <div class="spoiler-note">
-              <h2 class="spoiler-header">
-                <div class="spoiler-pre-header">a Note on</div>
-                Minor Spoilers
-                <div class="spoiler-post-header">(safe to read)</div>
+    <main>
+      <transition name="list">
+        <section v-if="!hideSpoilerWarning" id="spoiler-warning-section" class="card-border">
+          <div class="spoiler-note">
+            <h2 class="spoiler-header">
+              <div class="spoiler-pre-header">a Note on</div>
+              Minor Spoilers
+              <div class="spoiler-post-header">(safe to read)</div>
               </h1>
               <p>
                 <strong>Viewers:</strong> Do not send this site to streamers on their first play-through until
@@ -152,279 +124,229 @@
                   (will make the first couple of armor names visible)
                 </label>
               </div>
-            </div>
-          </section>
-        </transition>
+          </div>
+        </section>
+      </transition>
 
-        <section id="filters-section">
-          <p>
-            Obtained {{ totalObtained }} / 107 -
-            <span @click="showNote = !showNote" class="pill pointer">
-              <template v-if="!showNote">Show</template><template v-else>Hide</template> Author's note
-            </span>
+      <section id="filters-section">
+        <p>
+          Obtained {{ totalObtained }} / 107 -
+          <span @click="showNote = !showNote" class="pill pointer">
+            <template v-if="!showNote">Show</template><template v-else>Hide</template> Author's note
+          </span>
+          -
+          <span @click="hideSpoilerWarning = !hideSpoilerWarning" class="pill pointer">
+            <template v-if="hideSpoilerWarning">Show</template><template v-else>Hide</template> Spoiler Warning
+          </span>
+          <template v-if="showObtained === 'speedrun100'">
             -
-            <span @click="hideSpoilerWarning = !hideSpoilerWarning" class="pill pointer">
-              <template v-if="hideSpoilerWarning">Show</template><template v-else>Hide</template> Spoiler Warning
-            </span>
-            <template v-if="showObtained === 'speedrun100'">
-              -
-            </template>
-            <span
-              v-if="!confirmSpeedrunReset && showObtained === 'speedrun100'"
-              v-text="'Reset this profile\'s data'"
-              class="pill pointer"
-              title="Shortcut: Ctrl + Shift + Space"
-              @click="confirmSpeedrunReset = true"
-            ></span>
-            <template v-if="confirmSpeedrunReset">
-              <span
-                v-text="'Nevermind, keep my data'"
-                class="pill pointer"
-                title="Esc to cancel"
-                @click="confirmSpeedrunReset = false"
-              ></span>
-              &nbsp;
-              <span
-                v-text="'Wipe it, I\'m doing a reset'"
-                class="pill pointer"
-                title="Ctrl + Shift + Space to confirm"
-                @click="speedrunReset"
-              ></span>
-            </template>
-          </p>
-          <transition-group name="list">
-            <div v-if="showNote" class="card-border">
-              <div class="authors-note">
-                <h2>Author's Note</h2>
-                <p>
-                  Unless you <a href="https://gamebanana.com/mods/49882">mod this game in an emulator</a>, it only supports 100 armor
-                  slots. This means you cannot hold all 107 of the base armor + all DLC armor + all the amiibo armors.
-                  You must choose 7 armors to not carry with you. You can sell (almost) any armor, and can purchase back any previously
-                  owned armor in Tarrey Town from <a href="https://www.zeldadungeon.net/wiki/Grant%C3%A9">Granté</a> (upstairs). If you
-                  <em>somehow</em> don't have all <strong>25</strong> Zelda amiibos that effect the game, and for some reason don't
-                  feel like paying absurd prices on eBay for them, you can either use your phone to spoof NFC codes (this is a HUGE
-                  pain, as you need to run through all amiibos every day to see if they'll drop a new armor or one you already got, or
-                  some other items like arrows, opal, or a <a href="https://zelda.fandom.com/wiki/Silverscale_Spear">stupid weapon</a>).
-                  Or you can get some <a href="https://www.zeldacards.com">knock-off nfc cards</a> from China, which is what I did. They
-                  work great, and the artwork is hilariously "legally distinct" from Nintendo's intellectual property.
-                  (I make no money from this referal, I just found the link from
-                  <a href="https://www.youtube.com/watch?v=NOH-U1ugQYM">YouTube</a>, bought them, and was surprised they worked).
-                </p>
-                <p v-if="showNote">
-                  The 7 armors I recommend selling/skipping (but you can make your own decisions).
-                  Warm Doublet, Old Shirt, Well-Worn Trousers,
-                  Salvager Headgear/Vest/Trousers (Zora armor does the same thing + swims up waterfalls and looks better),
-                  and amber earrings (they are the least useful of the earrings). gl/hf
-                </p>
-              </div>
+          </template>
+          <span v-if="!confirmSpeedrunReset && showObtained === 'speedrun100'" v-text="'Reset this profile\'s data'"
+            class="pill pointer" title="Shortcut: Ctrl + Shift + Space" @click="confirmSpeedrunReset = true"></span>
+          <template v-if="confirmSpeedrunReset">
+            <span v-text="'Nevermind, keep my data'" class="pill pointer" title="Esc to cancel"
+              @click="confirmSpeedrunReset = false"></span>
+            &nbsp;
+            <span v-text="'Wipe it, I\'m doing a reset'" class="pill pointer" title="Ctrl + Shift + Space to confirm"
+              @click="speedrunReset"></span>
+          </template>
+        </p>
+        <transition-group name="list">
+          <div v-if="showNote" class="card-border">
+            <div class="authors-note">
+              <h2>Author's Note</h2>
+              <p>
+                This is a fork of Jared Wilcurt's original <a
+                  href="https://github.com/TheJaredWilcurt/botw-armor-upgrade-tracker">BOTW Armor Upgrade Tracker</a>. I
+                personally don't know Javascript/Vue to the extent necessary to substantially modify the base code, but
+                I have updated the data lists to account for the changes in TotK to the best of my ability.
+              </p>
+              <p>
+                In BotW, there was a 100-set limit on the number of sets you could possess at any one time. I'm not sure
+                if this same limit exists in TotK, but it's something to keep an eye out for (especially since all of
+                the formerly-amiibo-exclusive sets are acquireable in-game now). Maybe throw away the Tingle Set just in
+                case :)
+              </p>
+              <h2>To Do</h2>
+              <ul>
+                <li>Get images for:</li>
+                <ul>
+                  <li>Depths Set</li>
+                  <li>Froggy Set</li>
+                  <li>Glide Set</li>
+                  <li>Ember Set</li>
+                  <li>Charged Set</li>
+                  <li>Frostbite Set</li>
+                  <li>Yiga Set</li>
+                  <li>Zonaite Set</li>
+                  <li>Awakening Set</li>
+                  <li>Champion's Leathers</li>
+                  <li>That one hat from Cece</li>
+                </ul>
+                <li>Grab location for all items</li>
+                <li>What items are required for 100%?</li>
+                <li>Remove amiibo code (after verifying no gear is amiibo-exclusive)</li>
+              </ul>
             </div>
-          </transition-group>
-          <h2>Filters</h2>
-          <label>
-            Search:
-            <input v-model="search" type="text">
-          </label>
-          <select v-model="showObtained">
-            <option value="all">All</option>
-            <option value="obtained">Only Obtained</option>
-            <option value="unobtained">Only Unobtained</option>
-            <option value="speedrun100">Only 100% Speedrun</option>
-          </select>
-          <label>
-            <input v-model="showDlc" type="checkbox">
-            Show DLC
-          </label>
-          <label>
-            <input v-model="showAmiibo" type="checkbox">
-            Show Amiibo
-          </label>
-          <label>
-            <input v-model="onlyShowUpgradable" type="checkbox">
-            Show only upgradable
-          </label>
-        </section>
+          </div>
+        </transition-group>
+        <h2>Filters</h2>
+        <label>
+          Search:
+          <input v-model="search" type="text">
+        </label>
+        <select v-model="showObtained">
+          <option value="all">All</option>
+          <option value="obtained">Only Obtained</option>
+          <option value="unobtained">Only Unobtained</option>
+          <option value="speedrun100">Only 100% Speedrun</option>
+        </select>
+        <label>
+          <input v-model="showDlc" type="checkbox">
+          Show DLC
+        </label>
+        <label>
+          <input v-model="showAmiibo" type="checkbox">
+          Show Amiibo
+        </label>
+        <label>
+          <input v-model="onlyShowUpgradable" type="checkbox">
+          Show only upgradable
+        </label>
+      </section>
 
-        <section id="categories-section">
-          <h2 @click="showCategories = !showCategories">
-            Categories
-            <span class="small pointer">
-              <template v-if="showCategories">▼</template>
-              <template v-else>◀︎</template>
+      <section id="categories-section">
+        <h2 @click="showCategories = !showCategories">
+          Categories
+          <span class="small pointer">
+            <template v-if="showCategories">▼</template>
+            <template v-else>◀︎</template>
+          </span>
+        </h2>
+        <transition name="list">
+          <nav v-if="showCategories">
+            <span v-for="(categoryArmors, categoryName, categoryNavIndex) in categorizedArmor"
+              :key="'categoryName' + categoryName">
+              <a :href="'#' + simplifyName(categoryName)" v-text="categoryName"
+                @click="smoothScroll.scrollTo('#' + simplifyName(categoryName))"></a><template
+                v-if="categoryNavIndex < Object.keys(categorizedArmor).length - 1">, </template>
             </span>
-          </h2>
-          <transition name="list">
-            <nav v-if="showCategories">
-              <span
-                v-for="(categoryArmors, categoryName, categoryNavIndex) in categorizedArmor"
-                :key="'categoryName' + categoryName"
-              >
-                <a
-                  :href="'#' + simplifyName(categoryName)"
-                  v-text="categoryName"
-                  @click="smoothScroll.scrollTo('#' + simplifyName(categoryName))"
-                ></a><template
-                  v-if="categoryNavIndex < Object.keys(categorizedArmor).length - 1"
-                >, </template>
-              </span>
-            </nav>
-          </transition>
-        </section>
+          </nav>
+        </transition>
+      </section>
 
-        <section id="armors-section">
-          <transition-group name="list">
-            <div
-              v-for="(categoryArmors, categoryName) in categorizedArmor"
-              :key="'category-' + simplifyName(categoryName)"
-              :id="simplifyName(categoryName)"
-            >
-              <h3>
-                {{ categoryName }}
-                <a
-                  v-text="'▲'"
-                  class="small pointer"
-                  href="#top"
-                  title="Back to top"
-                  @click="smoothScroll.scrollTo('#top')"
-                ></a>
-              </h3>
-              <transition-group name="list">
-                <div
-                  v-for="(armorIndex, categoryArmorsIndex) in categoryArmors"
-                  :key="'category-' + simplifyName(categoryName) + '-armor-' + simplifyName(armors[armorIndex].name)"
-                  class="card-border"
-                >
-                  <div class="card">
-                    <div class="image-container">
-                      <div
-                        :class="['armors', simplifyName(armors[armorIndex].name), { 'blur': !armors[armorIndex].obtained }]"
-                      ></div>
-                      <transition name="list">
-                        <span
-                          v-if="armors[armorIndex].obtained && !cannotBeUpgraded.includes(armors[armorIndex].name)"
-                          class="stars"
-                        >
-                          <button
-                            v-text="armors[armorIndex].currentLevel === 0 ? '☆' : '★'"
-                            :aria-label="armors[armorIndex].currentLevel === 0 ? 'Set to star level 1' : 'Set to star level 0'"
-                            @click="armors[armorIndex].currentLevel = armors[armorIndex].currentLevel === 1 ? 0 : 1"
-                          ></button>
-                          <button
-                            v-text="armors[armorIndex].currentLevel < 2 ? '☆' : '★'"
-                            aria-label="Set to star level 2"
-                            @click="armors[armorIndex].currentLevel = 2"
-                          ></button>
-                          <button
-                            v-text="armors[armorIndex].currentLevel < 3 ? '☆' : '★'"
-                            aria-label="Set to star level 3"
-                            @click="armors[armorIndex].currentLevel = 3"
-                          ></button>
-                          <button
-                            v-text="armors[armorIndex].currentLevel < 4 ? '☆' : '★'"
-                            aria-label="Set to star level 4"
-                            @click="armors[armorIndex].currentLevel = 4"
-                          ></button>
-                        </span>
-                      </transition>
+      <section id="armors-section">
+        <transition-group name="list">
+          <div v-for="(categoryArmors, categoryName) in categorizedArmor"
+            :key="'category-' + simplifyName(categoryName)" :id="simplifyName(categoryName)">
+            <h3>
+              {{ categoryName }}
+              <a v-text="'▲'" class="small pointer" href="#top" title="Back to top"
+                @click="smoothScroll.scrollTo('#top')"></a>
+            </h3>
+            <transition-group name="list">
+              <div v-for="(armorIndex, categoryArmorsIndex) in categoryArmors"
+                :key="'category-' + simplifyName(categoryName) + '-armor-' + simplifyName(armors[armorIndex].name)"
+                class="card-border">
+                <div class="card">
+                  <div class="image-container">
+                    <div
+                      :class="['armors', simplifyName(armors[armorIndex].name), { 'blur': !armors[armorIndex].obtained }]">
                     </div>
-                    <h4>
-                      <a
-                        :href="'https://www.zeldadungeon.net/wiki/' + armors[armorIndex].name + '#Breath_of_the_Wild'"
-                        target="_blank"
-                      >
-                        {{ armors[armorIndex].name }}
-                      </a>
-                    </h4>
-                    <span>
-                      <label>
-                        Obtained:
-                        <input
-                          type="checkbox"
-                          v-model="armors[armorIndex].obtained"
-                        >
-                      </label>
-                    </span>
-
-                    <a
-                      v-if="treasureMap[armors[armorIndex].name]"
-                      :href="'https://www.zeldadungeon.net/breath-of-the-wild-interactive-map/?id=' + treasureMap[armors[armorIndex].name]"
-                      target="_blank"
-                      class="no-underline"
-                      title="View location on interactive map"
-                    ><img src="treasure.png" alt="treasure chest icon" class="map-icon" /></a>
-                    <span v-if="armors[armorIndex].fromAmiibo" class="pill">
-                      From Amiibo
-                    </span>
-                    <span v-if="armors[armorIndex].fromDlc" class="pill">
-                      From DLC
-                    </span>
                     <transition name="list">
-                      <div
-                        v-if="
+                      <span v-if="armors[armorIndex].obtained && !cannotBeUpgraded.includes(armors[armorIndex].name)"
+                        class="stars">
+                        <button v-text="armors[armorIndex].currentLevel === 0 ? '☆' : '★'"
+                          :aria-label="armors[armorIndex].currentLevel === 0 ? 'Set to star level 1' : 'Set to star level 0'"
+                          @click="armors[armorIndex].currentLevel = armors[armorIndex].currentLevel === 1 ? 0 : 1"></button>
+                        <button v-text="armors[armorIndex].currentLevel < 2 ? '☆' : '★'"
+                          aria-label="Set to star level 2" @click="armors[armorIndex].currentLevel = 2"></button>
+                        <button v-text="armors[armorIndex].currentLevel < 3 ? '☆' : '★'"
+                          aria-label="Set to star level 3" @click="armors[armorIndex].currentLevel = 3"></button>
+                        <button v-text="armors[armorIndex].currentLevel < 4 ? '☆' : '★'"
+                          aria-label="Set to star level 4" @click="armors[armorIndex].currentLevel = 4"></button>
+                      </span>
+                    </transition>
+                  </div>
+                  <h4>
+                    <a :href="'https://www.zeldadungeon.net/wiki/' + armors[armorIndex].name + '#Tears_of_the_Kingdom'"
+                      target="_blank">
+                      {{ armors[armorIndex].name }}
+                    </a>
+                  </h4>
+                  <span>
+                    <label>
+                      Obtained:
+                      <input type="checkbox" v-model="armors[armorIndex].obtained">
+                    </label>
+                  </span>
+
+                  <a v-if="treasureMap[armors[armorIndex].name]"
+                    :href="'https://www.zeldadungeon.net/tears-of-the-kingdom-interactive-map/?id=' + treasureMap[armors[armorIndex].name]"
+                    target="_blank" class="no-underline" title="View location on interactive map"><img
+                      src="treasure.png" alt="treasure chest icon" class="map-icon" /></a>
+                  <span v-if="armors[armorIndex].fromAmiibo" class="pill">
+                    From Amiibo
+                  </span>
+                  <span v-if="armors[armorIndex].fromDlc" class="pill">
+                    From DLC
+                  </span>
+                  <transition name="list">
+                    <div v-if="
                           armors[armorIndex].obtained &&
                           !cannotBeUpgraded.includes(armors[armorIndex].name) &&
                           armors[armorIndex].currentLevel < 4
-                        "
-                      >
-                        Ingredients
-                        <transition-group name="list">
-                          <template
-                            v-for="(levelIngredients, levelNumber) in armors[armorIndex].ingredients"
-                            :key="'category' + categoryName + 'armorIndex' + categoryArmorsIndex + 'level' + levelNumber"
-                          >
-                            <div
-                              v-if="levelNumber > armors[armorIndex].currentLevel"
-                              class="row"
-                            >
-                              <div class="col">
-                                Level&nbsp;{{ levelNumber }}:<br>
-                                <button
-                                  v-text="'buy'"
-                                  class="buy-button"
-                                  :disabled="!canPurchaseThisLevel(armorIndex, levelNumber)"
-                                  title="Will subtract this amount from your inventory and increase your star level"
-                                  @click="purchase(armors[armorIndex], levelNumber)"
-                                ></button>
+                        ">
+                      Ingredients
+                      <transition-group name="list">
+                        <template v-for="(levelIngredients, levelNumber) in armors[armorIndex].ingredients"
+                          :key="'category' + categoryName + 'armorIndex' + categoryArmorsIndex + 'level' + levelNumber">
+                          <div v-if="levelNumber > armors[armorIndex].currentLevel" class="row">
+                            <div class="col">
+                              Level&nbsp;{{ levelNumber }}:<br>
+                              <button v-text="'buy'" class="buy-button"
+                                :disabled="!canPurchaseThisLevel(armorIndex, levelNumber)"
+                                title="Will subtract this amount from your inventory and increase your star level"
+                                @click="purchase(armors[armorIndex], levelNumber)"></button>
+                            </div>
+                            <div class="col">
+                              <div v-for="(ingredient, ingredientIndex) in levelIngredients"
+                                :key="'category' + categoryName + 'armorIndex' + categoryArmorsIndex + 'level' + levelNumber + 'ingredient' + ingredientIndex"
+                                style="width: 150px">
+                                <strong v-text="ingredient.quantity"></strong>
+                                {{ ingredient.name }}
                               </div>
-                              <div class="col">
-                                <div
-                                  v-for="(ingredient, ingredientIndex) in levelIngredients"
-                                  :key="'category' + categoryName + 'armorIndex' + categoryArmorsIndex + 'level' + levelNumber + 'ingredient' + ingredientIndex"
-                                  style="width: 150px"
-                                >
-                                  <strong v-text="ingredient.quantity"></strong>
-                                  {{ ingredient.name }}
-                                </div>
-                              </div>
-                              <div class="col">
-                                <div
-                                  v-for="ingredient in levelIngredients"
-                                  class="row"
-                                >
-                                  <number-button v-model.number="userInventory[ingredient.name]"></number-button>
-                                  <div class="needed">
-                                    <template v-if="totalAmountOfIngredientForThisLevel(armorIndex, levelNumber, ingredient.name) <= userInventory[ingredient.name]">
-                                      <img src="checkmark.png" alt="checkmark" class="checkmark" />
-                                    </template>
-                                    <template v-else>
-                                      <span title="Needed">
-                                        {{ totalAmountOfIngredientForThisLevel(armorIndex, levelNumber, ingredient.name) - userInventory[ingredient.name] }}
-                                      </span>
-                                    </template>
-                                  </div>
+                            </div>
+                            <div class="col">
+                              <div v-for="ingredient in levelIngredients" class="row">
+                                <number-button v-model.number="userInventory[ingredient.name]"></number-button>
+                                <div class="needed">
+                                  <template
+                                    v-if="totalAmountOfIngredientForThisLevel(armorIndex, levelNumber, ingredient.name) <= userInventory[ingredient.name]">
+                                    <img src="checkmark.png" alt="checkmark" class="checkmark" />
+                                  </template>
+                                  <template v-else>
+                                    <span title="Needed">
+                                      {{ totalAmountOfIngredientForThisLevel(armorIndex, levelNumber, ingredient.name) -
+                                      userInventory[ingredient.name] }}
+                                    </span>
+                                  </template>
                                 </div>
                               </div>
                             </div>
-                          </template>
-                        </transition-group>
-                      </div>
-                    </transition>
-                  </div>
+                          </div>
+                        </template>
+                      </transition-group>
+                    </div>
+                  </transition>
                 </div>
-              </transition-group>
-            </div>
-          </transition-group>
-        </section>
-      </main>
-    </div>
-  </body>
+              </div>
+            </transition-group>
+          </div>
+        </transition-group>
+      </section>
+    </main>
+  </div>
+</body>
+
 </html>

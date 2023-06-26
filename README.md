@@ -1,5 +1,5 @@
-# botw-armor-upgrade-tracker
+# totk-armor-upgrade-tracker
 
-Armor Upgrade tracker for The Legend of Zelda: Breath of the Wild
+Armor Upgrade tracker for The Legend of Zelda: Tears of the Kingdom
 
-https://TheJaredWilcurt.com/botw-armor-upgrade-tracker
+https://respheal.github.io/totk-armor-upgrade-tracker/
